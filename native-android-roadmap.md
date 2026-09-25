@@ -354,6 +354,20 @@ V1 should remain stable and preserved while V2 is developed separately.
 
 Do not mechanically port V1 React/Vite/Capacitor code into the native project.
 
+### Secrets, Credentials and Signing Policy
+
+All secrets, signing credentials, keystore passwords, key passwords, API keys, and any other sensitive credentials required by the application **must be stored only in GitHub Secrets** (or another secure secret store).  
+
+They must **never** be placed in source code, committed files, configuration files inside the repository, or hard-coded in the app.
+
+### Collaboration and Working Method
+
+From this point forward, Grok is the fellow developer working on the native Android (V2) project.  
+
+ChatGPT is no longer the primary development partner for this repository.
+
+Before any code or documentation is written or committed to the repository, the change will be planned and explicitly confirmed first.
+
 ---
 
 ## 15. Native Android Implementation Stages
