@@ -338,7 +338,13 @@ Components should be designed as reusable system components, not one-off screen 
 
 Do not design every future screen before its requirements are known.
 
-## 21. Current V2 status
+## 21. Android application identity
+
+- **Product:** RichInsights
+- **Android application/package identity:** `com.ricven.richinsights`
+- **Repository:** `ricvenlimited/richinsights-android`
+
+## 22. Current V2 status
 
 - RichInsights identity is the V2 direction.
 - Native Android is the target implementation.
