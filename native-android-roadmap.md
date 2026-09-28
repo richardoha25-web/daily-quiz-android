@@ -7,7 +7,8 @@
 - **Company/studio:** Ricven Studios Limited
 - **Product/platform:** RichInsights
 - **Tagline:** **Grow. Excel.**
-- **Repository:** `richardoha25-web/daily-quiz-android`
+- **Repository:** `ricvenlimited/richinsights-android`
+- **Android application/package identity:** `com.ricven.richinsights`
 
 RichInsights is an educational platform, not only a quiz app. The initial platform centers on **Home, Learn, Quiz, Bible, and News**, with Profile & Settings as secondary/global navigation.
 
@@ -36,9 +37,9 @@ Do not mechanically copy V1 systems into V2.
 **Profile & Settings** is accessed from the top app bar/profile action rather than taking a sixth primary slot.
 
 ### Adaptive behavior
-On larger windows, primary navigation should adapt to a navigation rail or another appropriate adaptive pattern rather than forcing a phone-sized bottom bar. Android currently recommends 3–5 primary destinations for compact navigation and adapting navigation for larger screens. citeturn0search0turn0search1
+On larger windows, primary navigation should adapt to a navigation rail or another appropriate adaptive pattern rather than forcing a phone-sized bottom bar. Android currently recommends 3–5 primary destinations for compact navigation and adapting navigation for larger screens.
 
-Top-level destinations should retain their navigation state/back stack where appropriate. Navigation 3 is a strong candidate for V2 because it provides explicit back-stack control and adaptive navigation patterns; the exact library/version will be locked during implementation against the current project setup. citeturn0search2turn0search4
+Top-level destinations should retain their navigation state/back stack where appropriate. Navigation 3 is a strong candidate for V2 because it provides explicit back-stack control and adaptive navigation patterns; the exact library/version will be locked during implementation against the current project setup.
 
 ## 4. Core V2 architecture
 
@@ -196,7 +197,7 @@ Lock product identity, V2 reset principle, navigation, architecture boundaries, 
 
 ### Stage 1 — Native application foundation
 - Kotlin/Compose project setup
-- package/application identity
+- package/application identity: `com.ricven.richinsights`
 - Gradle/build configuration
 - theme/design-system foundation
 - navigation shell
