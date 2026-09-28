@@ -1,409 +1,234 @@
-# Daily Quiz & Challenge — Native Android Commercial & Monetization Blueprint
+# RichInsights — Native Android V2 Commercial & Monetization Blueprint
 
 ## 1. Purpose
 
-This document is the native Android commercial companion to `native-android-roadmap.md`.
+This document defines the commercial architecture for **RichInsights** V2.
 
-It carries forward the V1 commercial/monetization strategy while adapting it to the long-term **educational platform** architecture.
+It is intentionally smaller than the implementation roadmap. It records commercial decisions and boundaries that affect product architecture without pretending that prices, products, or paywalls are already finalized.
 
-The document defines business/product requirements, monetization concepts, entitlement boundaries, advertising behavior and future commercial architecture. It does not require immediate billing implementation.
+## 2. Commercial direction
 
-## 2. Commercial Product Vision
+RichInsights should support a sustainable combination of:
+- useful free learning;
+- advertising;
+- optional Premium;
+- optional Remove Ads;
+- premium content/features;
+- future one-time content packs.
 
-Daily Quiz & Challenge should become a sustainable educational platform with:
-- Useful free learning experiences.
-- Advertising-supported free usage.
-- Optional Premium subscription.
-- Optional one-time Remove Ads purchase.
-- Premium content/features.
-- Future one-time content packs.
-- Future international expansion.
-- Centralized entitlement architecture.
+The free experience must remain genuinely useful. Monetization must not require deliberately degrading core learning quality.
 
-Core principle:
+## 3. Revenue layers
 
-> Free users should receive real value. Premium users should receive substantially more value.
-
-The product should not deliberately cripple the free experience simply to force payment.
-
-## 3. Relationship to V2 Platform Architecture
-
-Commercial architecture must work with:
-- Native Android navigation.
-- Multi-source educational content.
-- Question generation and validation.
-- Question identity/families/variants.
-- Freshness and repetition avoidance.
-- Bible content.
-- Current Affairs content.
-- Future educational sections.
-- Account/progress architecture.
-- AdMob.
-
-Commercial access must be centralized. Question generators, providers, UI components and individual question records must not independently decide whether a user is entitled to Premium.
-
-Conceptually:
-
-```
-Content / Question
-      ↓
-Access Tier Metadata
-      ↓
-Central Entitlement Service
-      ↓
-User Eligibility
-      ↓
-UI + Content Selection
-```
-
-Access-tier metadata is not proof of purchase.
-
-## 4. Revenue Layers
-
-Planned revenue layers:
-1. Advertising for free users.
+Planned layers:
+1. AdMob advertising for applicable free usage.
 2. Premium subscription.
 3. One-time Remove Ads.
-4. Premium content/features.
-5. Future one-time quiz/content packs.
+4. Premium categories/topics/features.
+5. Future content packs.
 
-Optional rewarded ads can remain part of the free experience where appropriate.
+Optional rewarded ads may be used when the reward and user choice are clear.
 
-The business should not depend on a single revenue source.
+The exact launch mix is not locked.
 
-## 5. Free Experience
+## 4. Premium model
 
-The free tier should provide meaningful value and demonstrate the platform.
-
-Planned free capabilities may include:
-- General Knowledge
-- Science
-- Selected Africa & Nigeria
-- Selected Current Affairs
-- Selected Bible experiences
-- Daily challenges
-- Basic results/progress
-- Streaks
-- Basic quiz modes
-- Optional rewarded ads
-- Standard advertising-supported usage
-
-The exact free/premium split remains a product decision to be made before commercial enforcement.
-
-Do not create artificial content scarcity merely to manufacture Premium inventory.
-
-## 6. Premium Subscription
-
-Initial subscription concept:
+Initial concept:
 - Monthly Premium
 - Yearly Premium
 
-Exact prices are not decided.
+Potential value:
+- no ads;
+- expanded content;
+- premium categories/topics;
+- advanced quiz modes;
+- expanded Bible experiences;
+- advanced statistics;
+- personalized learning;
+- enhanced explanations;
+- exclusive challenges/features.
 
-Pricing must eventually consider:
-- Nigerian and international markets.
-- Google Play fees.
-- Taxes and applicable requirements.
-- Provider/API costs.
-- Cloud/backend costs.
-- Ad revenue.
-- Conversion and retention data.
-- Long-term sustainability.
+Exact products, prices, limits, and free/premium boundaries remain undecided until product and cost requirements are validated.
 
-Potential Premium value:
-- No ads.
-- More quizzes/content.
-- Premium categories/topics.
-- Advanced quiz modes.
-- Expanded Bible experience.
-- Advanced Africa & Nigeria content.
-- Expanded Current Affairs.
-- Advanced statistics.
-- Exclusive challenges.
-- Enhanced progress/streak features.
-- Personalized learning.
-- Deeper explanations.
-- Future learning tools.
+## 5. Remove Ads
 
-## 7. Remove Ads
-
-A one-time Remove Ads product may be offered.
-
-Remove Ads means:
-- Normal advertising is removed.
-- Free content remains available.
-- It does not automatically unlock the full Premium product.
-
-Important distinction:
+Remove Ads is a separate entitlement.
 
 **Remove Ads ≠ Premium**
 
-Remove Ads is convenience; Premium is the larger content/feature entitlement.
+Remove Ads removes applicable advertising but does not automatically unlock the full Premium product unless a future product decision explicitly combines them.
 
-## 8. Premium Content Model
+## 6. Content access tiers
 
-Commercial access should be modeled separately from provider identity.
-
-Conceptually:
-
-**Category → Topic → Difficulty → Content/Access Tier → Question Source**
-
-Possible future access metadata:
+Content may eventually carry access metadata such as:
 - `FREE`
 - `PREMIUM`
 - `SPECIAL_PACK`
-- `FUTURE_ENTITLEMENT`
 
-These values are content metadata only until centralized entitlement enforcement exists.
+These are metadata contracts, not proof of purchase.
 
-Premium questions/content must meet the same factual, freshness, provenance, distractor, clarity and anti-duplication standards as free content.
+Premium content must meet the same factual, validation, provenance, clarity, and anti-duplication standards as free content.
 
-## 9. Category Commercial Direction
+## 7. Central entitlement architecture
 
-Planning model:
+Commercial access must be centralized.
 
-| Area | Possible free layer | Possible premium layer |
-|---|---|---|
-| General Knowledge | Core quizzes | Advanced modes/content |
-| Science | Core quizzes | Advanced modes/content |
-| Africa & Nigeria | Selected content | Expanded/deeper content |
-| Current Affairs | Daily/selected content | Expanded/advanced content |
-| Bible | Selected experience | Full/expanded experience |
-| Future sections | To be defined | To be defined |
-
-This is not a locked launch configuration.
-
-## 10. Bible Commercial Architecture
-
-Bible is a major platform section, not simply a quiz category.
-
-Future commercial decisions may apply to:
-- Bible reading resources
-- Study tools
-- Advanced study features
-- Expanded quiz experiences
-- Licensed premium resources
-
-The underlying Bible content/licensing model must be established before commercial promises are made.
-
-Any translation or copyrighted resource must satisfy licensing requirements.
-
-## 11. Advertising Strategy
-
-V1 AdMob is stabilized and must be preserved as a known-good capability while V2 is implemented.
-
-Planned native strategy:
-- Banner in appropriate sections.
-- Interstitial at natural transitions.
-- Rewarded ad as an explicit optional action.
-- Future app-open behavior only if it provides an appropriate user experience.
-
-Rules:
-- Ads must not obscure content.
-- The core quiz must not become inaccessible because an ad fails.
-- Rewarded actions must clearly state the reward.
-- Use test ads during development.
-- Keep production ad identifiers/configuration separate from development/test configuration.
-- Ad behavior must be regression-tested during V2.
-
-V1 has used rewarded bonus behavior and this should remain compatible with the future entitlement architecture.
-
-## 12. Commercial UX Requirements
-
-Premium/store UX should:
-- Explain value clearly.
-- Show price and billing period clearly.
-- Distinguish subscription vs one-time purchase.
-- Explain exactly what an entitlement unlocks.
-- Avoid deceptive urgency.
-- Avoid aggressive paywalls.
-- Keep free content useful.
-- Provide restore/synchronization behavior.
-- Handle pending, failed and expired purchase states clearly.
-- Preserve the user's location when returning from a purchase flow.
-
-The Android app should use the supported Google Play purchase flow for digital purchases rather than collecting payment card details directly.
-
-## 13. Entitlement Architecture
-
-Use centralized entitlement state.
-
-Example:
+Conceptually:
 
 ```
-User
- ↓
+Products / Purchases
+        ↓
 Entitlement state
- ├── premium
- ├── remove_ads
- ├── bible_full
- ├── current_affairs_pro
- ├── advanced_stats
- └── content-pack entitlements
- ↓
+        ↓
 Content selection + UI
 ```
 
-The exact identifiers remain provisional.
+The Android UI displays entitlement state and starts supported purchase flows. Individual screens, question records, or providers must not implement independent billing rules.
 
-The Android UI must consume entitlement state; it should not implement its own independent billing rules.
+The final entitlement identifiers and backend/account design are not locked.
 
-## 14. Commercial/Data Separation
+## 8. Advertising architecture
 
-Keep these concerns separate:
+V2 AdMob is a **fresh implementation**.
 
-**Content system**
-- Facts
-- Sources
-- Questions
-- Families
-- Variants
-- Validation
-- Freshness
-- Provenance
+Requirements:
+- native Google Mobile Ads SDK;
+- clear separation of test and production configuration;
+- centralized ad management;
+- explicit loading/ready/failed states;
+- lifecycle-aware behavior;
+- graceful failure;
+- frequency controls where appropriate;
+- no dependency between quiz availability and ad availability.
 
-**Commercial system**
-- Products
-- Prices
-- Purchases
-- Entitlements
-- Subscription state
+Planned formats may include:
+- banner;
+- interstitial;
+- rewarded;
+- app-open only if justified by the final UX.
 
-**Android UI**
-- Displays availability
-- Starts supported purchase flow
-- Reflects entitlement state
+Exact placements and frequency rules must be validated during implementation.
 
-This separation prevents provider changes or question-system changes from requiring a billing rewrite.
+## 9. Billing architecture
 
-## 15. Future Product Types
+Future digital purchases should use the supported Google Play purchase flow.
 
 The architecture should allow:
-- Premium subscriptions
-- Remove Ads
-- Premium categories
-- Premium topic collections
-- One-time content packs
-- Advanced quiz modes
-- Advanced statistics
-- Personalized learning
-- Future educational products
+- subscription purchase;
+- one-time Remove Ads;
+- future content packs;
+- restore/synchronization;
+- pending purchase states;
+- failed purchase states;
+- expired/cancelled subscription states;
+- entitlement refresh.
 
-Possible future access labels must remain metadata contracts until actual enforcement is implemented.
+Billing is not a prerequisite for the first native shell.
 
-## 16. Infrastructure and Cost Discipline
+## 10. Commercial/data separation
 
-Commercial architecture should not force paid infrastructure prematurely.
+Keep three concerns separate:
 
-The project remains focused on a zero-cost preparation/development path where practical.
+**Content**
+- facts;
+- sources;
+- questions;
+- families/variants;
+- validation;
+- freshness.
 
-Future infrastructure choices must be justified by actual product requirements, scale, reliability and cost.
+**Commercial**
+- products;
+- purchases;
+- prices;
+- entitlements.
 
-Firebase is not required merely because commercial features exist. Authentication, analytics, crash reporting, remote configuration, billing support or other services can be introduced when a concrete requirement is defined.
+**Android UI**
+- displays availability;
+- presents commercial surfaces;
+- launches supported purchase flow;
+- reflects entitlement state.
 
-## 17. Commercial Development Sequence
+This prevents provider/content changes from forcing billing changes.
 
-### Now
-- Document commercial requirements.
-- Keep access-tier metadata compatible with content models.
-- Preserve AdMob.
-- Design entitlement boundaries.
-- Continue content/provider licensing research.
+## 11. Bible and commercial considerations
 
-### Native V2 foundation
-- Implement centralized product/access models.
-- Keep UI commercial-aware without enforcing purchases.
-- Establish account/progress architecture when scheduled.
+Bible is a dedicated product area.
+
+Future commercial features may include:
+- licensed resources;
+- advanced study tools;
+- expanded quiz experiences.
+
+No commercial promise should be made for Bible resources until the underlying licensing and distribution rights are confirmed.
+
+## 12. Cost discipline
+
+Do not introduce paid infrastructure merely because Premium or advertising exists.
+
+Future services should be added only for a concrete need such as:
+- authentication;
+- account sync;
+- analytics;
+- crash reporting;
+- remote configuration;
+- billing support;
+- content delivery;
+- scale/reliability.
+
+Backend/provider choices are still subject to V2 architecture evaluation.
+
+## 13. Development sequence
+
+### Foundation
+- define product/access models;
+- keep UI commercial-aware without enforcing purchases;
+- preserve clean boundaries around advertising.
 
 ### Later
-- Google Play Billing.
-- Premium subscription.
-- Remove Ads.
-- Premium category/topic access.
-- Premium Bible capabilities.
-- Current Affairs Pro.
-- Content packs.
+- implement AdMob;
+- implement Google Play Billing;
+- implement entitlement verification;
+- introduce Premium/Remove Ads;
+- introduce premium content.
 
 ### Long term
-- Personalized learning.
-- Challenges/tournaments where appropriate.
-- International expansion.
-- Additional educational products.
+- content packs;
+- personalized learning;
+- additional educational products;
+- international expansion.
 
-## 18. Decisions Intentionally Not Locked
+## 14. Deliberately undecided
 
-Do not invent:
-- Monthly Premium price.
-- Yearly Premium price.
-- Remove Ads price.
-- Exact free/premium split.
-- Exact free quiz limits.
-- Exact premium modes.
-- Content-pack prices.
-- International pricing.
-- Final provider mix.
-- Final product IDs.
-- Final billing implementation.
-- Final account/commercial data schema.
+Do not invent final values for:
+- subscription prices;
+- Remove Ads price;
+- exact free/premium split;
+- free quiz limits;
+- premium product IDs;
+- content-pack prices;
+- final provider mix;
+- final account/commercial schema.
 
-These should be decided from validated product, content, provider and market requirements.
+These are future product/business decisions.
 
-## 19. Commercial Success Definition
-
-The commercial system should balance:
-
-**User value + learning quality + retention + sustainable revenue**
-
-A healthy platform should allow:
-- Free users to genuinely use the product.
-- Ad-supported users to support the service.
-- Premium users to receive substantially more value.
-- One-time purchase users to have an alternative to subscriptions.
-- The business to maintain and expand the platform.
-- Commercial architecture to scale without repeated rewrites.
-
-## 20. Relationship to Other V2 Documents
+## 15. Relationship to the other V2 documents
 
 ### `native-android-roadmap.md`
-Master project roadmap:
-- Architecture
-- Stages
-- Platform direction
-- Content/question architecture
-- Technical foundation
+Master project and implementation roadmap.
 
 ### `native-android-ui-ux.md`
-Product experience blueprint:
-- Visual language
-- Screens
-- Navigation
-- Components
-- Interaction behavior
-- Accessibility
-- Native text behavior
-- Ads/premium UX
+Experience, navigation, visual system, screens, interaction, accessibility, and commercial UX.
 
-### `native-android-commercial-monetization.md`
-Commercial blueprint:
-- Free/Premium
-- Advertising
-- Products
-- Entitlements
-- Billing
-- Commercial architecture
+### This document
+Commercial products, advertising, entitlements, billing boundaries, and monetization decisions.
 
-All three must remain synchronized.
+The three documents should remain synchronized, but duplication should be avoided.
 
-## 21. V1 → V2 Commercial Checkpoint — September 25, 2026
+## 16. V2 commercial status
 
-V1 is stabilized at the commercial-architecture level.
-
-Confirmed V1 commercial baseline:
-- AdMob is the active monetization system.
-- Debug builds use test ads.
-- Release builds use production AdMob configuration.
-- No billing, subscriptions, Premium entitlement enforcement, Remove Ads purchase, or paywall enforcement is implemented in V1.
-
-V2 carries these forward as future capabilities without making them prerequisites for the native shell.
-
-**Current commercial status: V1 stabilized; V2 commercial architecture documented; billing implementation remains future work.**
+- RichInsights is the V2 product identity.
+- V2 commercial architecture is planned, not implemented.
+- AdMob will be rebuilt natively.
+- Billing and Premium are future work.
+- Prices and final commercial packaging are intentionally undecided.
