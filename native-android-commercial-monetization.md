@@ -225,7 +225,13 @@ Commercial products, advertising, entitlements, billing boundaries, and monetiza
 
 The three documents should remain synchronized, but duplication should be avoided.
 
-## 16. V2 commercial status
+## 16. Android application identity
+
+- **Product:** RichInsights
+- **Android application/package identity:** `com.ricven.richinsights`
+- **Repository:** `ricvenlimited/richinsights-android`
+
+## 17. V2 commercial status
 
 - RichInsights is the V2 product identity.
 - V2 commercial architecture is planned, not implemented.
