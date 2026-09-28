@@ -1,447 +1,352 @@
-# Daily Quiz & Challenge — Native Android UI/UX Blueprint
+# RichInsights — Native Android V2 UI/UX Blueprint
 
 ## 1. Purpose
 
-This document is the native Android UI/UX companion to `native-android-roadmap.md`.
+This document defines the V2 product experience for **RichInsights**, the native Android educational platform.
 
-It translates the V1 UI/UX lessons and the existing V1 design blueprint into requirements for the V2 native Android educational platform.
+V2 is a new native experience. V1 is reference material only and must not constrain the new design.
 
-V1 React/Vite/Capacitor remains the stabilized reference product. Its UI should inform us about what worked and what needs improvement, but V2 must be designed as a genuinely native Android experience rather than a visual copy of V1.
+## 2. Product experience
 
-## 2. Product Experience Vision
+**Product:** RichInsights  
+**Tagline:** **Grow. Excel.**
 
-The product is an **educational platform**, not only a quiz app.
-
-The experience should combine:
-- Quiz and challenge experiences.
-- Learning-oriented content.
-- Bible reading and future study tools.
-- Progress and statistics.
-- Current Affairs and other dynamic educational content.
-- Future educational sections without redesigning the application shell.
-
-Core feeling: **Clean Competitive**.
+Core feeling: **Clean Competitive**
 
 Target qualities:
-- Clean
-- Modern
-- Premium
-- Energetic
-- Competitive
-- Professional
-- Playful without being childish
-- Sharp and easy to understand
-- Accessible
-- Consistent
+- modern;
+- polished;
+- energetic;
+- professional;
+- accessible;
+- easy to understand;
+- educational without feeling childish.
 
 Avoid:
-- Excessive gradients
-- Visual clutter
-- Generic/basic layouts
-- Overly corporate styling
-- Overly childish game styling
-- Unnecessary decoration
-- Every screen having a different visual language
+- excessive gradients;
+- visual clutter;
+- generic unmodified Material styling;
+- overly corporate or childish game styling;
+- unnecessary decoration;
+- inconsistent screen-by-screen visual languages.
 
-Create an original Richard Studios / Daily Quiz & Challenge identity. External UI references are research and inspiration, not templates to copy.
+## 3. Native design foundation
 
-## 3. Native Android UI Foundation
+Use Kotlin + Jetpack Compose with a reusable RichInsights design system.
 
-The UI will be implemented with Kotlin + Jetpack Compose and a reusable design system.
+Define:
+- typography;
+- color roles;
+- spacing;
+- shapes;
+- elevation;
+- buttons;
+- cards;
+- inputs;
+- dialogs;
+- feedback;
+- loading/error/empty states;
+- navigation;
+- ad containers;
+- accessibility behavior.
 
-The design system should define:
-- Typography
-- Color roles
-- Spacing scale
-- Shapes/corner radius
-- Elevation/shadow rules
-- Buttons
-- Cards
-- Inputs
-- Dialogs
-- Feedback components
-- Navigation
-- Loading/error/empty states
-- Ad containers
-- Accessibility behavior
+Material 3 may provide primitives, but RichInsights needs its own visual identity.
 
-Material 3 can provide primitives, but the final product must have its own visual identity.
+## 4. Primary navigation
 
-## 4. Typography and Text Behavior
+### Bottom navigation on compact phones
 
-Typography must be:
-- Modern
-- Highly readable
-- Strong for headings
-- Clear for questions
-- Comfortable on small screens
-- Consistent across the platform
+**Home | Learn | Quiz | Bible | News**
 
-Hierarchy should distinguish:
-1. Screen titles
-2. Scores/major numbers
-3. Quiz questions
-4. Section headings
-5. Body text
-6. Secondary/helper text
-7. Button labels
-8. Status/metadata
+### Profile & Settings
 
-### V2 copy/selection requirement
+Profile/settings is a secondary/global destination accessed from the top app bar/profile action.
 
-Ordinary learner-facing interface and quiz text should **not be casually selectable/copyable**.
+### Larger screens
 
-Question text, answer options, category labels, buttons, explanations and result text should use native Compose rendering without unnecessary text-selection behavior.
+Use adaptive navigation, such as a navigation rail/navigation suite, rather than stretching a phone bottom bar across a large window. Android's current guidance explicitly recommends adapting navigation for larger window sizes. citeturn0search1turn0search9
 
-This is a practical anti-copy requirement, not an assertion that screenshots, OCR, accessibility tooling, debugging or other extraction methods can be absolutely prevented.
+Each primary destination should preserve its useful navigation state where appropriate.
 
-Accessibility must not be damaged merely to discourage copying. Final implementation should balance non-selectable presentation with appropriate Android accessibility semantics.
+## 5. Home
 
-## 5. Visual Direction
-
-Initial palette direction from V1 planning:
-- Near-white background
-- Strong primary blue
-- Deep blue/navy for hierarchy
-- Dark readable text
-- Muted secondary text
-- White cards
-- Green for success
-- Red for incorrect/error
-- Warm amber/gold as a restrained accent for points, streaks and rewards
-
-The final palette must be visually tested and accessibility-checked.
-
-Never rely on color alone:
-- Correct = color + check/label
-- Incorrect = color + X/label
-
-Touch targets must be comfortable for mobile use.
-
-## 6. Responsive and Adaptive Layout
-
-Design for:
-- Android phones, including the original V1 test-device class
-- Larger phones
-- Landscape
-- Tablets
-- Foldables
-- Split-screen and changing window sizes
-
-Do not hard-code a phone-only layout.
-
-## 7. Platform Navigation
-
-The application should use a small primary navigation structure, approximately 4–5 destinations initially, while leaving room for future sections.
-
-Conceptual destinations:
-- **Home** — daily activity, recommendations, progress and entry points.
-- **Learn / Quiz** — quiz and learning experiences.
-- **Bible** — dedicated Bible reading/library/study experience.
-- **Explore / Library** — future educational resources.
-- **Profile / Progress** — progress, statistics, settings and future account capabilities.
-
-These are architectural concepts, not a final visual navigation decision.
-
-Navigation requirements:
-- Clear top-level destinations.
-- Nested navigation inside major sections.
-- Predictable Android back/up behavior.
-- Independent navigation history where appropriate.
-- Bible hierarchy without making every Bible function a top-level destination.
-- Future features should be added without rewriting the application shell.
-
-## 8. Home Experience
-
-The home screen becomes the platform entry point rather than a simple grid of category cards.
+Home is the platform entry point.
 
 Possible hierarchy:
-1. Greeting
-2. Daily Challenge
-3. Streak/progress
-4. Continue learning/playing
-5. Explore categories or educational sections
-6. Additional features
-7. Primary navigation
+1. greeting/personal context;
+2. daily challenge;
+3. progress/streak;
+4. continue learning/playing;
+5. categories or featured content;
+6. relevant recommendations.
 
-The exact content should be finalized during wireframing.
+The exact content should be established through wireframes and testing rather than locked here.
 
-## 9. Educational Sections
+## 6. Learn
 
-Initial quiz/learning areas include:
+Learn is the broader educational area.
+
+It may contain:
+- structured learning content;
+- lessons;
+- topics;
+- explanations;
+- future Study experiences;
+- learning progress.
+
+Do not force the entire future learning system into the first release. The navigation destination exists so the platform can grow beyond quizzes cleanly.
+
+## 7. Quiz
+
+Quiz is a major platform experience, not the entire app.
+
+Initial areas:
 - General Knowledge
 - Science
 - Africa & Nigeria
 - Current Affairs
-- Bible
+- Bible quizzes
 
-Bible is not merely a category card. It opens a dedicated product experience.
+The UI consumes validated question objects from the V2 content architecture. It must not know which provider generated them.
 
-Future categories and educational modules must fit the same design system.
-
-Current Affairs should distinguish structured Current Affairs knowledge from a future News Quiz / Current Events experience. NewsData.io or another news provider belongs to that future news product and should not define the Current Affairs UI.
-
-## 10. Quiz Experience
-
-The quiz screen remains a major experience within the larger platform.
+### Quiz screen
 
 Target structure:
-- Appropriate back/navigation control
-- Question number
-- Progress
-- Timer
-- Question
-- Four answer options
-- Streak/progress indicator
-- Clear feedback
+- navigation/back control;
+- question number/progress;
+- timer;
+- question;
+- answer options;
+- relevant streak/progress;
+- clear feedback.
 
-V1 uses a 15-second question timer. Native redesign should preserve the validated gameplay rule unless separately changed and tested.
+The earlier V1 15-second timer is a reference requirement only. V2 should validate the final timing before locking it.
 
 Answer states:
-1. Default
-2. Pressed
-3. Selected
-4. Correct
-5. Incorrect
-6. Disabled/locked
+- default;
+- pressed;
+- selected;
+- correct;
+- incorrect;
+- disabled/locked.
 
-Feedback must be immediate, readable and accessible.
+Feedback must be immediate, clear, and accessible.
 
-## 11. Quiz Content UX
+## 8. Results and progress
 
-The UI must never assume that questions come from one API.
+Results should communicate:
+- completion;
+- score;
+- accuracy;
+- correct/wrong count;
+- points;
+- streak;
+- progress;
+- next action.
 
-The client should consume validated question objects supplied by the content/backend architecture.
+Future enhancements may include:
+- explanations;
+- topic performance;
+- personalized recommendations;
+- achievements;
+- learning feedback.
 
-The UI should support metadata needed for:
-- Question identity
-- Difficulty
-- Provenance when user-facing attribution is appropriate
-- Explanations when available
-- Freshness/status where useful
+## 9. Bible
 
-Source/attribution information must not clutter the quiz screen.
+Bible is a dedicated product area.
 
-If questions cannot be loaded:
-- Explain the problem in plain language.
-- Offer retry where appropriate.
-- Do not expose raw API/provider errors.
-
-## 12. Results and Progress
-
-Results should feel useful and satisfying.
-
-Show where appropriate:
-- Completion
-- Score
-- Accuracy
-- Points earned
-- Correct/wrong counts
-- Streak
-- Progress
-- Next actions
-
-Future learning enhancements:
-- Explanations
-- Learning feedback
-- Topic performance
-- Personalized recommendations
-- Achievements
-
-Progress should eventually connect to account/cloud architecture when that is implemented.
-
-## 13. Bible UX
-
-Bible is a major platform section.
-
-Conceptual information architecture:
+Conceptual structure:
 
 ```
 Bible
 ├── Read Bible
-│   ├── Testament
 │   ├── Book
 │   ├── Chapter
 │   └── Reader
 ├── Bible Quiz
-│   ├── Quick Quiz
-│   ├── Book Quiz
-│   ├── Chapter Quiz
-│   └── Topic Quiz
-└── Future Study Tools
+└── Future Study
 ```
 
-Future Bible reader requirements:
-- Offline reading where licensing permits.
-- Book/chapter navigation.
-- Search.
-- Silent reading by default.
-- User-triggered read-aloud.
-- Play/pause/resume/stop controls.
-- Future speed/voice controls.
+Reader requirements:
+- offline reading when licensed content is available;
+- book/chapter navigation;
+- search;
+- silent reading by default;
+- user-triggered read-aloud;
+- play/pause/resume/stop;
+- future speed/voice controls.
 
-Voice reading must never start automatically when a chapter opens.
+Read-aloud must never start automatically.
 
-V1 may retain a simple “Bible — Coming Soon” placeholder until the native experience is ready.
+## 10. News
 
-## 14. Loading, Error and Connectivity UX
+News is a dedicated top-level experience.
 
-Connectivity is a first-class state.
+It should be architecturally separate from the Current Affairs quiz category. A future news provider must not dictate the quiz UI or vice versa.
+
+News features will be designed after product requirements and content/provider decisions are established.
+
+## 11. Typography and interaction
+
+Typography should prioritize:
+- readable questions;
+- strong headings;
+- clear scores;
+- comfortable body text;
+- consistent hierarchy.
+
+Ordinary learner-facing quiz/interface text should not be casually selectable/copyable. Use normal native Compose rendering rather than unnecessary text-selection containers.
+
+This is not an absolute copy-prevention mechanism. Accessibility must not be damaged in pursuit of copy resistance.
+
+Touch targets must be comfortable, and important meaning must never rely on color alone.
+
+## 12. Visual direction
+
+Initial direction:
+- near-white foundation;
+- strong blue primary identity;
+- deep blue/navy hierarchy;
+- dark readable text;
+- muted secondary text;
+- white surfaces/cards;
+- green success;
+- red incorrect/error;
+- restrained amber/gold accent for points/streaks/rewards.
+
+Final tokens must be validated for contrast and tested across screens.
+
+## 13. Responsive/adaptive design
 
 Design for:
-- Loading
-- Connecting
-- Offline
-- Connection lost
-- Requesting
-- Provider/API delay
-- Empty result
-- Temporary provider failure
-- Retry
-- Quiz unavailable
-- Ad unavailable
-- Unexpected error
+- phones;
+- larger phones;
+- landscape;
+- tablets;
+- foldables;
+- split-screen/changing window sizes.
 
-Messages must be short, clear, non-technical and actionable.
+Do not build a phone-only layout and retrofit larger screens later.
+
+Where useful, larger windows may show multiple related panes instead of simply enlarging a single-column screen.
+
+## 14. Connectivity states
+
+Design explicit UI for:
+- loading;
+- connecting;
+- offline;
+- connection lost;
+- empty;
+- temporary failure;
+- retry;
+- quiz unavailable;
+- ad unavailable;
+- unexpected error.
+
+Messages should be short, human-readable, and actionable. Never expose raw provider/API errors.
 
 Example:
-> **Internet connection required**
+
+> **Internet connection required**  
 > Connect to the internet to start a quiz.
 
-Bible offline reading should not be incorrectly blocked merely because quiz functionality requires internet.
+Offline Bible reading must not be blocked merely because online quiz features require internet.
 
-## 15. Ads UX
+## 15. Advertising UX
 
-V1 AdMob behavior is a stabilized capability and must be preserved during native redesign.
+V2 AdMob is a fresh implementation.
 
-Ad principles:
-- Ads should feel integrated, not accidental.
-- Never cover quiz content or controls.
-- Do not make the core quiz inaccessible because an ad failed.
-- Use natural transitions for interstitials.
-- Rewarded ads must be explicitly optional.
-- Preserve tested banner/rewarded/interstitial behavior while adapting it to native Android.
+Rules:
+- ads never cover quiz content or controls;
+- the quiz remains usable if an ad fails;
+- interstitials belong at appropriate transitions;
+- rewarded ads are explicitly optional;
+- development uses test ads;
+- production identifiers/configuration remain separate;
+- ad loading/failure states are handled gracefully.
 
-Potential placements:
-- Appropriate persistent banner areas
-- Natural transition points
-- Quiz completion
-- Optional rewarded action
+Exact placements are implementation decisions and must be tested rather than copied blindly from V1.
 
-Development uses test ads; production uses production configuration.
+## 16. Premium/billing UX
 
-## 16. Premium/Billing UX
-
-The UI must be designed to support future centralized commercial entitlements without embedding billing decisions into individual screens.
-
-Future surfaces may include:
-- Premium/store landing screen
-- Monthly/yearly subscription options
-- Remove Ads
-- Premium content packs
-- Product detail/benefit view
-- Purchase confirmation
-- Restore/synchronize purchases
-- Active Premium status
-- Pending/error/expired states
-
-Principles:
-- Show value before asking for payment.
-- Make price and billing period clear.
-- Distinguish subscription from one-time purchase.
-- Keep the free experience useful.
-- Avoid deceptive urgency or aggressive paywalls.
-- Clearly communicate entitlements.
-- Preserve the user's place when returning from a purchase flow.
-
-Google Play purchase UI should hand off to the supported Google Play purchase experience rather than collecting payment card details directly in the app.
-
-Billing UI is planned, not an initial implementation requirement.
-
-## 17. Reusable Components
-
-Initial component library:
-- Primary/secondary buttons
-- Category cards
-- Daily Challenge card
-- Answer options
-- Progress indicators
-- Timer
-- Score display
-- Streak indicator
-- Achievement badge
-- Dialogs
-- Snackbar/toast
-- Navigation components
-- Loading indicators
-- Error/empty states
-- Ad containers
-- Premium/entitlement indicators
-
-Each component should have documented size, spacing, typography, shape, elevation, color and interaction states.
-
-## 18. Animation and Motion
-
-Motion should:
-- Confirm interactions.
-- Clarify transitions.
-- Reinforce feedback.
-- Celebrate meaningful achievements.
-- Communicate loading/progress.
-
-Avoid excessive animation during timed quizzes.
-
-Animations must remain performant on lower-end Android devices.
-
-## 19. Accessibility
+Future commercial surfaces may include:
+- Premium landing/store;
+- monthly/yearly subscriptions;
+- Remove Ads;
+- premium content;
+- product benefits;
+- purchase/restore states;
+- active entitlement state.
 
 Requirements:
-- Sufficient contrast.
-- Do not rely on color alone.
-- Meaningful content descriptions where appropriate.
-- Comfortable touch targets.
-- Scalable text/layout behavior.
-- Logical focus/navigation semantics.
-- Accessibility testing during implementation.
+- show value clearly;
+- show price and billing period clearly;
+- distinguish subscriptions from one-time products;
+- explain entitlements;
+- avoid deceptive urgency/aggressive paywalls;
+- preserve user context through purchase flows.
 
-Copy protection must not be implemented in a way that makes the product inaccessible.
+Billing is planned, not an initial UI implementation requirement.
 
-## 20. UI/UX Implementation Process
+## 17. Accessibility
 
-Use:
+Requirements:
+- sufficient contrast;
+- do not rely on color alone;
+- meaningful content descriptions where needed;
+- comfortable touch targets;
+- scalable text/layout;
+- logical focus/navigation semantics;
+- accessibility testing across major screens.
+
+Copy-resistance must never become an excuse for inaccessible UI.
+
+## 18. Motion
+
+Motion should:
+- confirm interactions;
+- clarify transitions;
+- communicate progress;
+- reinforce meaningful feedback.
+
+Avoid excessive motion during timed quizzes. Animations must remain performant on lower-end devices.
+
+## 19. Reusable component foundation
+
+Initial shared components:
+- primary/secondary buttons;
+- cards;
+- category/content cards;
+- answer options;
+- progress indicators;
+- timer;
+- score display;
+- streak indicator;
+- dialogs;
+- feedback;
+- loading/error/empty states;
+- navigation components;
+- ad containers;
+- premium/entitlement indicators.
+
+Components should be designed as reusable system components, not one-off screen decorations.
+
+## 20. Design process
 
 **RESEARCH → WIREFRAME → DESIGN SYSTEM → HIGH-FIDELITY SCREENS → IMPLEMENT → BUILD → INSTALL → TEST → FIX → CHECKPOINT**
 
-Do not redesign production V1 while V2 is being planned.
+Do not design every future screen before its requirements are known.
 
-Do not implement every future screen before the underlying architecture is ready.
+## 21. Current V2 status
 
-## 21. Relationship to Native Android Roadmap
-
-This document provides the detailed UX requirements for the roadmap stages.
-
-`native-android-roadmap.md` remains the master V2 project roadmap.
-
-UI/UX must stay aligned with:
-- Multi-source content architecture
-- Question identity/history/repetition rules
-- Bible architecture
-- Network behavior
-- Commercial entitlement architecture
-- Native Android architecture
-- Future educational sections
-
-A UI decision must not force provider-specific or billing-specific logic into the Android presentation layer.
-
-## 22. Current Status — September 25, 2026
-
-- V1 UI remains the stabilized reference baseline.
-- Major redesign is deferred from V1.
+- RichInsights identity is the V2 direction.
 - Native Android is the target implementation.
-- Educational-platform navigation is a V2 architectural requirement.
+- Primary navigation is **Home / Learn / Quiz / Bible / News**.
+- Profile & Settings is secondary/global.
+- Adaptive navigation is required.
 - Bible is a major product section.
-- Native typography and controlled text selection/copy behavior are explicit V2 requirements.
-- Quiz UI must consume a provider-independent question/content system.
-- AdMob behavior must be preserved/regression-tested.
-- Premium/billing UX is planned but not implemented.
-- High-fidelity visual design and implementation begin only after the native foundation and content architecture are ready.
+- News is separate from Current Affairs.
+- Quiz UI is provider-independent.
+- AdMob and billing are fresh V2 work, not copied V1 implementations.
+- High-fidelity implementation follows the native foundation and domain/content contracts.
