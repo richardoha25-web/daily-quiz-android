@@ -1,431 +1,287 @@
-# Daily Quiz Android — Native Android Roadmap
+# RichInsights — Native Android V2 Roadmap
 
-## 1. Project Identity and Long-Term Direction
+> **Master V2 document.** This repository is a clean native Android rebuild. V1 is a prototype/reference only; V1 code and behavior are not assumed to be production-ready.
 
-Repository: `richardoha25-web/daily-quiz-android`
+## 1. Product identity
 
-This repository is the foundation for the **native Android educational platform**. It is not a mechanical rewrite of V1 and should not be treated as only a quiz application.
+- **Company/studio:** Ricven Studios Limited
+- **Product/platform:** RichInsights
+- **Tagline:** **Grow. Excel.**
+- **Repository:** `richardoha25-web/daily-quiz-android`
 
-V1 remains the existing React/Vite/Capacitor product. Native Android is a new client architecture designed for the long-term platform direction.
+RichInsights is an educational platform, not only a quiz app. The initial platform centers on **Home, Learn, Quiz, Bible, and News**, with Profile & Settings as secondary/global navigation.
 
-The platform begins with quizzes and Bible capabilities, but its architecture must remain extensible for additional educational sections, learning tools, content libraries, and future commercial capabilities.
+The native V2 architecture must make future learning tools, content libraries, study features, progress, accounts, and commercial capabilities possible without rebuilding the application shell.
 
-### Core principle
+## 2. V2 reset principle
 
-> Build a scalable educational platform in which quizzes are one major learning experience, not the definition of the entire product.
+V2 is a **new architecture**, not a port of React/Vite/Capacitor.
 
-The native client should therefore use modular navigation and feature boundaries so future sections can be added without restructuring the entire application.
+V1 may be inspected for:
+- product lessons;
+- useful UX ideas;
+- known failures;
+- requirements we do not want to repeat.
 
----
+V1 must **not** be treated as a source of production-ready code, question data, API architecture, AdMob implementation, or application structure.
 
-## 2. V1 Lessons That Must Carry Into V2
+Do not mechanically copy V1 systems into V2.
 
-V1 has established working product behavior and exposed architectural lessons that must be preserved deliberately rather than rediscovered during native implementation.
+## 3. Primary navigation
 
-### 2.1 Quiz/content lessons
+### Compact phones
+**Home | Learn | Quiz | Bible | News**
 
-V2 must preserve and improve:
+### Secondary/global
+**Profile & Settings** is accessed from the top app bar/profile action rather than taking a sixth primary slot.
 
-- unique question IDs and persistent question history;
-- protection against exact question repetition;
-- protection against inappropriate repetition of related question families where required;
-- distinction between a verified fact, a question family, a question variant, and a user-visible question;
-- question provenance through source/fact identifiers;
-- difficulty metadata;
-- validation before questions reach the learner;
-- fresh-question selection;
-- continuous replenishment when the available fresh pool becomes low;
-- separation of content generation from the Android UI and quiz presentation;
-- category-specific source strategies without coupling the quiz engine to one provider.
+### Adaptive behavior
+On larger windows, primary navigation should adapt to a navigation rail or another appropriate adaptive pattern rather than forcing a phone-sized bottom bar. Android currently recommends 3–5 primary destinations for compact navigation and adapting navigation for larger screens. citeturn0search0turn0search1
 
-### 2.2 Text and presentation lessons
+Top-level destinations should retain their navigation state/back stack where appropriate. Navigation 3 is a strong candidate for V2 because it provides explicit back-stack control and adaptive navigation patterns; the exact library/version will be locked during implementation against the current project setup. citeturn0search2turn0search4
 
-The native app should render learner-facing text as native Android/Compose UI rather than as web/HTML-style selectable text.
+## 4. Core V2 architecture
 
-Default learner-facing quiz and interface text should not be casually selectable/copyable. Do not wrap ordinary question, option, category, button, explanation, or result text in a selection container merely to display it. Text appearance should be deliberately designed through native typography, spacing, hierarchy, and accessibility-aware Compose components.
+Target stack:
+- Kotlin
+- Jetpack Compose
+- modern Android architecture
+- ViewModel
+- Coroutines / Flow / StateFlow
+- repository/data-source separation
+- type-safe navigation approach
+- Room where local structured persistence is required
+- DataStore for preferences/settings
+- native networking
+- Hilt if dependency-injection complexity justifies it
+- WorkManager only for genuine background work
+- native Google Mobile Ads SDK
+- backend/provider architecture selected for V2 requirements rather than inherited automatically from V1
 
-This is a practical anti-copy/selectability requirement, not a claim that screenshots, OCR, accessibility tooling, debugging, or other extraction methods can be absolutely prevented.
+Conceptual client flow:
 
----
-
-## 3. Multi-Source Educational Content Architecture
-
-V2 must not make the question engine dependent on one API, provider, or data source.
-
-The content system should support multiple independent sources, including where appropriate:
-
-- external APIs;
-- structured public datasets;
-- trusted knowledge sources;
-- news/current-affairs providers;
-- Scripture/Bible data sources subject to licensing;
-- internally verified facts;
-- manually authored questions;
-- curated question packs;
-- future specialized educational providers.
-
-### Provider independence
-
-The quiz engine should request validated content according to category, difficulty, freshness, and other requirements. It should not need to know which provider supplied the underlying fact or question.
-
-Conceptually:
-
-```text
-Multiple Sources
-      ↓
-Fact / Content Ingestion
-      ↓
-Verification + Provenance
-      ↓
-Question Generation / Authoring
-      ↓
-Validation
-      ↓
-Question Bank
-      ↓
-ID + Family + Variant Metadata
-      ↓
-Freshness / History Selection
-      ↓
-Quiz Engine
+```
+Compose UI
+   ↓
+UI State / ViewModel
+   ↓
+Repository
+   ↓
+Remote + Local Data Sources
 ```
 
-Providers must be replaceable or additive. If a provider becomes unavailable, changes pricing, imposes limits, or becomes unsuitable, the platform should be able to use another source or internal content without redesigning the quiz engine.
+Provider-specific generation logic belongs outside the Android presentation layer.
 
----
+## 5. Content and question architecture
 
-## 4. Large-Scale Question Generation Vision
+The question system is being rebuilt from the ground up.
 
-The V2 content architecture should be capable of supporting a very large question universe, potentially reaching **millions of legitimate generated question variants** over the life of the platform.
+The platform must separate:
 
-This does not mean blindly storing millions of low-quality questions. Scale must come from a controlled relationship between:
+1. **Content sources** — APIs, public/structured data, licensed data, manual authoring, curated packs, trusted sources.
+2. **Ingestion/normalization** — convert source material into a consistent internal representation.
+3. **Verification and validation** — factual, structural, answer, distractor, language, and quality checks.
+4. **Question generation/authoring** — create legitimate question variants from verified material.
+5. **Question bank** — store approved questions and their provenance.
+6. **Selection engine** — choose appropriate fresh questions for a user/session.
+7. **History** — record what the user has already seen.
 
-- verified facts;
-- question families;
-- generation templates/rules;
-- legitimate variants;
-- difficulty levels;
-- category scope;
-- freshness requirements;
-- curated/manual content;
-- validation and deduplication.
+Question identity must support at least:
+- `factId`
+- `familyId`
+- `variantId`
+- `questionId`
+- category/topic
+- difficulty
+- provenance/source
+- validation/lifecycle status
 
-One verified fact may support multiple legitimate question forms, but each generated question must still have identity, provenance, validation state, and family/variant relationships.
+A wording change does not automatically make a genuinely new educational question. Family-level repetition must be controlled where appropriate.
 
-The architecture should therefore support:
+### Scale requirement
 
-```text
-Verified Fact
-    ↓
-Question Family
-    ├── Variant A
-    ├── Variant B
-    ├── Variant C
-    └── ...
-```
+V2 must be capable of growing to a very large question universe, potentially millions of legitimate variants over the life of the platform. Scale must come from verified content and meaningful variants, not low-quality duplication.
 
-The system must avoid treating superficial wording changes as genuinely new educational questions when they test the same thing.
+The system must continuously replenish content. A small exhausted cache must not be the normal failure mode.
 
----
+## 6. Provider independence
 
-## 5. Question Identity, Validation, and Repetition Architecture
+No single provider is the architecture.
 
-Question identity is a first-class platform concern.
+Providers may be added, removed, replaced, or combined without rewriting the quiz engine. A provider outage, pricing change, quota, or quality problem should be isolated from the learner-facing quiz experience as much as reasonably possible.
 
-At minimum, the content model should be able to distinguish:
+The final provider mix is deliberately **not locked yet**.
 
-- `factId` — underlying verified knowledge;
-- `familyId` — conceptual question family;
-- `variantId` — legitimate generated variant;
-- `questionId` — unique user-visible question identity;
-- source/provenance metadata;
-- difficulty;
-- lifecycle/validation status.
+## 7. Initial learning/content areas
 
-The question lifecycle should conceptually be:
+The initial product direction includes:
+- General Knowledge
+- Science
+- Africa & Nigeria
+- Current Affairs
+- Bible
 
-```text
-Verified Fact
-      ↓
-Question Concept
-      ↓
-Question Family
-      ↓
-Generated / Authored Variant
-      ↓
-Structural + Factual Validation
-      ↓
-Approved Question
-      ↓
-Question Bank
-      ↓
-Fresh-Question Selector
-      ↓
-Quiz Session
-      ↓
-User History
-```
+**News** is a separate top-level product area and should not be treated as merely another Current Affairs API.
 
-The freshness system must distinguish exact repetition from family-level repetition. A player should not be shown the same question again simply because its wording was slightly changed, when the product rules consider that the same learning target.
+Bible is a dedicated platform section, not simply a quiz category.
 
-Question generation, validation, selection, and history must remain separate concerns.
+## 8. Bible direction
 
----
-
-## 6. Continuous Content Replenishment
-
-The platform must not depend on a small fixed cache that can be exhausted.
-
-When a category's fresh supply becomes low, the system should be able to:
-
-1. request or ingest additional source material;
-2. generate additional questions;
-3. validate and deduplicate them;
-4. add approved questions to the available pool;
-5. select fresh questions for the learner.
-
-If one provider cannot supply enough material, another compatible source or internal content should be available where the category permits it.
-
-The learner should not receive a generic "not enough fresh questions" failure merely because one small cache has been consumed.
-
----
-
-## 7. Educational Platform Navigation and Feature Direction
-
-The native application should be designed around platform-level navigation rather than a single quiz screen.
-
-The roadmap should support a small primary navigation set (approximately 4–5 destinations initially, subject to UI/UX validation) while leaving room for future sections.
-
-Initial conceptual areas may include:
-
-- **Home** — educational starting point, recommendations, progress, and entry points;
-- **Learn / Quiz** — the existing quiz experiences and future learning activities;
-- **Bible** — Bible reading/library and future Bible study capabilities;
-- **Explore / Library** — future educational resources and content;
-- **Profile / Progress** — future learner progress, settings, and account capabilities.
-
-These are architectural concepts, not a final locked navigation design. The exact destinations, labels, and order should be established during UI/UX implementation.
-
-Adding a future educational section should be an extension of the platform rather than a rewrite of the application shell.
-
----
-
-## 8. Bible as a Major Platform Section
-
-Bible should not be modeled merely as another quiz category.
-
-The planned Bible capability includes a future offline Bible library using appropriately licensed text, with WEB as the leading version direction from V1 planning, plus online Bible quizzes and future study capabilities.
-
-Potential future Bible capabilities include:
-
-- offline reading;
+Planned future Bible capabilities:
+- offline reading using appropriately licensed text;
 - book/chapter navigation;
 - search;
-- online quizzes;
-- study tools;
-- user-triggered read-aloud with explicit play/pause controls;
-- future licensed Bible resources.
+- online Bible quizzes;
+- future study tools;
+- user-triggered read-aloud with play/pause/resume/stop controls.
 
-Licensing requirements must be verified before distributing any Bible translation or copyrighted resource.
+WEB remains the leading translation direction from earlier planning, but licensing/distribution requirements must be verified before implementation or distribution.
 
----
+Read-aloud must never start automatically when a chapter opens.
 
-## 9. Native Android Technical Foundation
+## 9. Network and local data behavior
 
-Primary stack:
+Online quiz/content features require internet access.
 
-- Kotlin;
-- Jetpack Compose;
-- ViewModel;
-- Coroutines;
-- Flow / StateFlow;
-- lifecycle-aware state collection;
-- Repository/data-source separation;
-- Navigation for Compose;
-- Room where structured local persistence is required;
-- DataStore for preferences/settings;
-- native Android networking;
-- Hilt if dependency injection complexity justifies it;
-- WorkManager only where background work is genuinely required;
-- native Google Mobile Ads SDK for advertising;
-- existing Cloudflare Worker initially where the API contract fits.
+The app must provide deliberate states for:
+- online;
+- connecting;
+- offline;
+- connection lost;
+- loading/requesting;
+- empty result;
+- temporary failure;
+- retry.
 
-Target architecture:
+Local persistence may store question history, settings, and other intentionally local data. Cached history must not silently become an offline quiz source unless that behavior is explicitly designed.
 
-```text
-Compose UI
-    ↓
-Screen / UI State
-    ↓
-ViewModel
-    ↓
-Repository
-    ↓
-Remote + Local Data Sources
-    ↓
-Cloudflare Worker / External Providers / Room / DataStore
-```
+## 10. Monetization and commercial architecture
 
-The Android client should not contain provider-specific question-generation logic that belongs in the content/backend layer.
+V2 will use a fresh commercial architecture rather than copying V1.
 
----
-
-## 10. Network and Data Behavior
-
-The platform is internet-dependent for online quiz/content experiences, while selected local capabilities may work offline by deliberate design.
-
-Network state handling should explicitly support states such as:
-
-- ONLINE;
-- CONNECTING;
-- OFFLINE;
-- CONNECTION_LOST;
-- REQUESTING;
-- ERROR.
-
-Local question history can support anti-repetition decisions, but cached history must not silently become an offline quiz source unless that behavior is explicitly designed and documented.
-
----
-
-## 11. UI/UX Direction
-
-The native Android interface should follow the established "Clean Competitive" direction while evolving it for a broader educational platform.
-
-Core visual principles:
-
-- clean white foundation;
-- strong blue as a primary identity color;
-- restrained complementary accent;
-- clear hierarchy;
-- polished native typography;
-- purposeful motion;
-- accessible controls;
-- responsive/adaptive layouts;
-- professional and energetic without being childish;
-- avoid excessive gradients and generic unmodified Material styling.
-
-Material 3 may provide the foundation, but the platform should have a distinct visual identity.
-
-The app must support phones and be designed with tablets, foldables, landscape, split-screen, and other adaptive window sizes in mind.
-
----
-
-## 12. Commercial and Future Platform Architecture
-
-The architecture should leave room for future:
-
-- premium categories/content;
-- locked educational packs;
-- subscriptions;
-- ad-free entitlements;
+Planned capabilities:
+- AdMob advertising;
+- optional rewarded ads;
+- Premium subscription;
+- Remove Ads;
+- premium content/features;
+- future content packs;
 - Google Play Billing;
-- account-based progress;
-- cloud synchronization;
-- personalization;
-- additional educational products.
+- centralized entitlement state.
 
-These capabilities should not be implemented prematurely. The architecture should avoid making them difficult to introduce later.
+Commercial enforcement is **not** an initial prerequisite for the native shell.
 
-Firebase is not an initial requirement. It may be introduced later only for a concrete need such as authentication, analytics, crash reporting, remote configuration, or another justified service.
+The client must not let individual question providers, screens, or question records independently decide Premium access.
 
----
+## 11. Development and quality rules
 
-## 13. V1 Backend and Infrastructure Continuity
-
-The native Android project should initially reuse the existing Cloudflare Worker where its contracts are suitable.
-
-GitHub remains the source-control and development center. Cloudflare remains the initial backend/runtime platform. Neither should be treated as the question/content provider itself.
-
-The platform architecture should remain provider-independent so that future infrastructure changes do not require rewriting the Android client or quiz engine.
-
----
-
-## 14. Development Rules
-
-Development remains incremental and test-driven:
+Use:
 
 **BUILD → INSTALL → TEST → FIX → DOCUMENT → CHECKPOINT → NEXT STAGE**
 
-Do not attempt to build the entire platform at once.
+Requirements:
+- keep V1 untouched while V2 is built;
+- keep V2 buildable at every meaningful checkpoint;
+- test on real Android hardware;
+- add automated tests where they provide meaningful protection;
+- do not optimize for feature count at the expense of reliability;
+- document only decisions that remain useful to implementation.
 
-Every major stage must leave the repository in a buildable/testable state before the next stage begins.
+## 12. Implementation stages
 
-V1 should remain stable and preserved while V2 is developed separately.
+### Stage 0 — Requirements and architecture
+**Status: documented**
 
-Do not mechanically port V1 React/Vite/Capacitor code into the native project.
+Lock product identity, V2 reset principle, navigation, architecture boundaries, content/question requirements, and major quality requirements.
 
----
+### Stage 1 — Native application foundation
+- Kotlin/Compose project setup
+- package/application identity
+- Gradle/build configuration
+- theme/design-system foundation
+- navigation shell
+- build/install pipeline
 
-## 15. Native Android Implementation Stages
+### Stage 2 — Platform UI foundation
+- RichInsights visual system
+- reusable components
+- adaptive layouts
+- loading/error/empty states
+- accessibility foundations
+- Home/Learn/Quiz/Bible/News shell
 
-### Stage 0 — Planning and requirements
-Status: **Completed / expanded**
-
-Lock the platform vision, V1 lessons, technical stack, content architecture, question architecture, navigation direction, and major non-functional requirements.
-
-### Stage 1 — Native Android shell
-
-Create the Kotlin/Compose application shell, package identity, Gradle configuration, basic navigation, theme foundation, and build/install pipeline.
-
-### Stage 2 — UI foundation
-
-Implement typography, colors, spacing, reusable components, adaptive layout rules, loading/error states, accessibility foundations, and the native text behavior.
-
-### Stage 3 — Content/question domain model
-
-Implement the client-side contracts and models required to represent categories, question identity, question families/variants, difficulty, provenance, validation state, quiz sessions, and results.
-
-Generation itself should remain in the appropriate content/backend layer.
+### Stage 3 — Content/domain contracts
+- category/topic models
+- question/fact/family/variant/ID models
+- provenance and validation metadata
+- quiz-session/result models
+- stable API contracts
 
 ### Stage 4 — Quiz engine
+- session state
+- question presentation
+- answer handling
+- timer
+- scoring
+- progression
+- completion/results
+- failure/retry states
 
-Implement quiz session state, question presentation, answer handling, scoring, progression, timers, completion, results, and appropriate error/empty states.
-
-### Stage 5 — Network and backend integration
-
-Connect the native client to the existing Cloudflare Worker using stable API contracts, with explicit network-state handling.
+### Stage 5 — Backend/content integration
+- connect to the selected V2 backend/content services
+- network handling
+- content validation boundaries
+- provider-independent contracts
 
 ### Stage 6 — History and freshness
+- local history persistence
+- exact-question and family-level repetition rules
+- selection/freshness integration
+- replenishment behavior
 
-Implement local persistence for question history and related anti-repetition state. Integrate fresh-question selection according to the backend/content contract.
+### Stage 7 — Initial content rollout
+Bring categories online incrementally:
+- General Knowledge
+- Science
+- Africa & Nigeria
+- Current Affairs
+- Bible quiz capability where ready
 
-### Stage 7 — Category expansion
+### Stage 8 — Bible platform experience
+- offline reader
+- licensed content
+- search/navigation
+- read-aloud controls
+- Bible-specific study foundations
 
-Bring the planned categories online incrementally, including General Knowledge, Africa & Nigeria, Current Affairs, Science, and Bible quiz capabilities where appropriate.
+### Stage 9 — News and broader platform features
+- News experience
+- progress/account foundations
+- future learning resources
+- additional educational modules
 
-### Stage 8 — Bible platform section
+### Stage 10 — Commercial and release hardening
+- native AdMob
+- Google Play Billing when required
+- entitlement enforcement
+- performance/accessibility/security testing
+- release preparation
 
-Build the dedicated Bible navigation and reading/library foundation after licensing and content requirements are confirmed.
+Stages can be subdivided as implementation progresses. A stage is complete only when its scope is tested and documented.
 
-### Stage 9 — Platform expansion
+## 13. Definition of success
 
-Add future educational sections, Explore/Library capabilities, progress/account features, and other platform modules only when their requirements are defined.
-
-### Stage 10 — Monetization and release hardening
-
-Introduce native advertising, future entitlements/billing where required, release validation, performance testing, accessibility testing, security review, and production release preparation.
-
-Stages may be subdivided further as implementation begins. No stage should be considered complete until it has been built, installed/tested where applicable, documented, and checkpointed.
-
----
-
-## 16. Definition of V2 Success
-
-V2 is successful when the native Android application is not merely a faster or prettier version of V1, but a maintainable educational platform with:
-
-- native Android architecture;
-- modular platform navigation;
-- strong quiz functionality;
-- scalable multi-source content generation;
-- validated and traceable questions;
-- robust repetition avoidance and freshness management;
+V2 succeeds when RichInsights has a maintainable native Android foundation with:
+- clear platform navigation;
+- strong quiz/session behavior;
+- scalable and provider-independent content architecture;
+- validated, traceable questions;
+- robust repetition prevention and freshness;
 - continuous content replenishment;
-- a path toward a very large question universe;
-- a dedicated Bible experience;
-- reliable network handling;
-- deliberate native UI/UX;
-- room for additional educational sections;
-- room for future accounts, personalization, and commercial features;
-- stable separation between client, content system, and infrastructure.
+- deliberate Bible support;
+- reliable network behavior;
+- adaptive native UI;
+- clean separation of client, content, infrastructure, and commercial concerns;
+- room for future educational products.
 
-The long-term objective is **an expandable educational platform**, not simply a quiz application.
+**V2 is an educational platform foundation — not V1 rebuilt with a new UI.**
