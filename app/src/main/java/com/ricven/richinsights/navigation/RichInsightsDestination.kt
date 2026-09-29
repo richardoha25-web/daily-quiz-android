@@ -1,8 +1,9 @@
 package com.ricven.richinsights.navigation
 
+import androidx.navigation3.runtime.NavKey
 import kotlinx.serialization.Serializable
 
-sealed interface RichInsightsDestination {
+sealed interface RichInsightsDestination : NavKey {
     @Serializable
     data object Home : RichInsightsDestination
 
