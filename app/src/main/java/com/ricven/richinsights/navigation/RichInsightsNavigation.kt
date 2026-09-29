@@ -17,6 +17,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.foundation.layout.padding
 import androidx.navigation3.runtime.NavEntry
 import androidx.navigation3.runtime.rememberNavBackStack
 import androidx.navigation3.ui.NavDisplay
@@ -76,7 +77,9 @@ fun RichInsightsNavigation() {
     ) { paddingValues ->
         NavDisplay(
             backStack = backStack,
-            modifier = Modifier.fillMaxSize(),
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(paddingValues),
             onBack = { backStack.removeLastOrNull() },
             entryProvider = { key ->
                 NavEntry(key) {
