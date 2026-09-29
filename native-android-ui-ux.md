@@ -85,7 +85,194 @@ The design system will establish:
 
 Material 3 may provide underlying primitives, but RichInsights must have its own visual identity and token system.
 
-## 5. Primary navigation
+## 5. Brand & Launch Identity
+
+This section defines the product identity layer that sits around the application UI. It is deliberately established before backend integration so later implementation does not force branding decisions into technical structure.
+
+### 5.1 Brand architecture
+
+The product identity has three distinct layers:
+
+1. **Brand mark / symbol**
+   - the recognizable visual symbol associated with RichInsights;
+   - must remain identifiable at very small sizes;
+   - should communicate intelligence, growth, learning, insight, or a related product concept without becoming a literal generic education icon;
+   - must work independently from the wordmark.
+
+2. **Wordmark / product name**
+   - **RichInsights**
+   - used where there is enough visual space to communicate the product name clearly;
+   - typography and exact treatment will be finalized with the brand asset work.
+
+3. **Tagline**
+   - **Grow. Excel.**
+   - supports the product promise but is not part of the compact launcher icon;
+   - should appear selectively in launch, onboarding, store/marketing, and other appropriate branded surfaces.
+
+The three layers must feel like one identity rather than three unrelated graphics.
+
+### 5.2 App icon direction
+
+The Android launcher icon is a high-priority brand asset because it is one of the user's first visual encounters with RichInsights.
+
+The icon must:
+- be recognizable without the app name;
+- remain legible at small launcher sizes;
+- work in Android adaptive-icon contexts;
+- retain a strong silhouette;
+- use the established RichInsights palette;
+- avoid unnecessary text;
+- avoid placing **Grow. Excel.** inside the icon;
+- avoid tiny details that disappear at small sizes;
+- avoid looking like a generic quiz, school, book, trophy, or finance icon unless such imagery is deliberately transformed into a distinctive RichInsights symbol.
+
+The icon should primarily use the established visual hierarchy:
+
+**Deep Navy → Intelligent Blue → Electric Cyan → restrained Gold**
+
+Gold should remain an accent rather than becoming the dominant icon color.
+
+### 5.3 Icon concept development
+
+The final icon concept is **not locked yet**.
+
+Before production assets are created, the design process will explore a small number of deliberately different RichInsights symbol directions. Candidate directions may include abstract combinations of:
+- insight/discovery;
+- upward growth;
+- learning/knowledge;
+- a distinctive initial or monogram;
+- layered or dimensional information;
+- a refined symbol that can scale from launcher icon to brand mark.
+
+The goal is not to select a familiar education symbol. The goal is to develop a distinctive RichInsights mark that can represent the broader platform as it expands into learning, quizzes, Bible, news, and future experiences.
+
+The final concept must be approved before the production icon assets are treated as locked.
+
+### 5.4 Adaptive icon requirements
+
+The Android implementation will use the proper adaptive icon structure rather than a single flattened image where practical.
+
+The final asset package should account for:
+- foreground artwork;
+- background treatment;
+- safe visual area;
+- launcher masking;
+- different launcher shapes;
+- small-size legibility;
+- possible light/dark launcher environments.
+
+Important visual elements must remain inside the safe area and must not depend on the exact launcher mask shape.
+
+### 5.5 Icon asset system
+
+Production branding will eventually provide the required Android resources, including:
+- adaptive icon foreground;
+- adaptive icon background;
+- legacy/fallback launcher treatment where needed;
+- appropriate density/resource variants;
+- transparent artwork where required by the adaptive-icon structure.
+
+The source artwork should be retained in an editable/vector-friendly form so future refinements do not require rebuilding the brand from a flattened screenshot.
+
+### 5.6 Tagline usage
+
+The official tagline is:
+
+**Grow. Excel.**
+
+It should be treated as a supporting brand statement, not a mandatory UI label.
+
+Appropriate uses may include:
+- launch/splash experience;
+- onboarding;
+- selected empty or welcome states;
+- store listing and marketing materials;
+- promotional graphics;
+- selected brand-forward moments.
+
+It should generally not appear:
+- inside the launcher icon;
+- repeatedly on every screen;
+- inside compact navigation;
+- in technical configuration;
+- in places where it competes with functional content.
+
+The tagline must remain visually secondary to the RichInsights name and core product action.
+
+### 5.7 Launch and splash experience
+
+The launch experience should create a polished first impression while remaining fast and restrained.
+
+Conceptual sequence:
+
+**RichInsights symbol → subtle brand motion → RichInsights → Grow. Excel. → application**
+
+This is a conceptual direction, not a locked animation storyboard.
+
+Requirements:
+- use the final approved brand mark;
+- avoid long splash delays;
+- do not make users wait for decorative animation;
+- respect Android's native splash-screen behavior;
+- transition cleanly into the main RichInsights experience;
+- remain performant on lower-end Android devices;
+- avoid automatically starting product content or audio during launch.
+
+The exact animation, duration, easing, and transition will be defined after the brand mark is finalized and the Android launch implementation is tested.
+
+### 5.8 Launch implementation boundary
+
+The launch experience is outside the primary navigation shell.
+
+The conceptual application flow is:
+
+**Android launch/splash → RichInsights application → primary navigation shell → Home / Learn / Quiz / Bible / News**
+
+Therefore, adding the launch experience does not require restructuring the navigation architecture already established in V2.
+
+The brand identity layer also remains independent from Firebase, quiz logic, content providers, and monetization.
+
+### 5.9 Implementation timing
+
+Brand and launch work is divided into deliberate phases:
+
+**Phase A — documented direction**
+- define brand architecture;
+- define icon requirements;
+- define tagline usage;
+- define launch experience;
+- establish asset requirements.
+
+**Phase B — visual exploration**
+- create several candidate brand-mark directions;
+- compare their scalability and distinctiveness;
+- select a direction;
+- refine the selected mark.
+
+**Phase C — production assets**
+- create final launcher/adaptive-icon assets;
+- create required brand/launch assets;
+- verify small-size rendering;
+- verify Android launcher behavior.
+
+**Phase D — Android integration**
+- add launcher resources;
+- configure the Android application icon;
+- implement the approved splash/launch experience;
+- connect the launch transition to the existing navigation shell.
+
+**Phase E — device verification**
+- build;
+- install;
+- test launch behavior;
+- test icon appearance across available launcher contexts;
+- test different device/window conditions;
+- fix issues;
+- checkpoint.
+
+No production icon or animation should be considered final merely because it looks good in a design canvas. It must also survive actual Android rendering and device testing.
+
+## 6. Primary navigation
 
 ### Compact phones
 
@@ -101,7 +288,7 @@ Use adaptive navigation appropriate to the available window size. Do not stretch
 
 Each primary destination should preserve useful navigation state where appropriate.
 
-## 6. Home
+## 7. Home
 
 Home is the platform entry point.
 
@@ -115,7 +302,7 @@ Potential hierarchy:
 
 The exact layout will be established through later wireframes and requirements rather than prematurely locking the screen here.
 
-## 7. Learn
+## 8. Learn
 
 Learn is the broader educational area.
 
@@ -129,7 +316,7 @@ It may contain:
 
 The first release should not attempt to build the entire future learning system. The destination exists so RichInsights can grow beyond quizzes cleanly.
 
-## 8. Quiz
+## 9. Quiz
 
 Quiz is a major platform experience, not the entire product.
 
@@ -163,7 +350,7 @@ Feedback must be immediate, clear, and accessible.
 
 The exact timer and other detailed interaction rules should be validated before being locked into the final design.
 
-## 9. Results and progress
+## 10. Results and progress
 
 Results should communicate:
 - completion;
@@ -177,7 +364,7 @@ Results should communicate:
 
 Future experiences may add explanations, topic performance, achievements, recommendations, and learning feedback.
 
-## 10. Bible
+## 11. Bible
 
 Bible is a dedicated product area.
 
@@ -202,7 +389,7 @@ Reader requirements:
 
 Read-aloud must never start automatically.
 
-## 11. News
+## 12. News
 
 News is a dedicated top-level experience.
 
@@ -210,7 +397,7 @@ It remains architecturally separate from the **Current Affairs** quiz category. 
 
 Detailed News UX will be designed after its product requirements and content decisions are established.
 
-## 12. Typography and interaction
+## 13. Typography and interaction
 
 Typography should provide:
 - strong headings;
@@ -223,7 +410,7 @@ Use normal native Compose rendering. Do not introduce unnecessary text-selection
 
 Touch targets must be comfortable, and important meaning must never rely on color alone.
 
-## 13. Responsive and adaptive design
+## 14. Responsive and adaptive design
 
 Design for:
 - phones;
@@ -237,7 +424,7 @@ Do not build a phone-only layout and retrofit larger screens later.
 
 Where useful, larger windows may display multiple related panes instead of simply enlarging a single-column phone layout.
 
-## 14. Connectivity states
+## 15. Connectivity states
 
 RichInsights is **online-first**, not broadly offline-first.
 
@@ -275,7 +462,7 @@ Design clear states for:
 
 Messages should be short, human-readable, and actionable. Never expose raw provider/API errors.
 
-## 15. Advertising UX
+## 16. Advertising UX
 
 V2 AdMob is a fresh implementation.
 
@@ -290,7 +477,7 @@ Rules:
 
 Exact placements are implementation decisions and must be tested rather than copied from V1.
 
-## 16. Premium and billing UX
+## 17. Premium and billing UX
 
 Future commercial surfaces may include:
 - Premium;
@@ -309,7 +496,7 @@ Requirements:
 
 Billing is planned for later stages and is not part of the initial UI foundation.
 
-## 17. Accessibility
+## 18. Accessibility
 
 Requirements:
 - sufficient contrast;
@@ -322,7 +509,7 @@ Requirements:
 
 Accessibility is a design-system requirement, not a final cleanup task.
 
-## 18. Motion
+## 19. Motion
 
 Motion should:
 - confirm interactions;
@@ -332,7 +519,7 @@ Motion should:
 
 Avoid excessive motion during timed quizzes. Animations must remain performant on lower-end devices.
 
-## 19. Reusable component foundation
+## 20. Reusable component foundation
 
 The design system will eventually provide reusable components such as:
 - primary and secondary buttons;
@@ -352,19 +539,19 @@ The design system will eventually provide reusable components such as:
 
 Components should be system-level building blocks, not one-off screen decorations.
 
-## 20. Design process
+## 21. Design process
 
 **RESEARCH → WIREFRAME → DESIGN SYSTEM → HIGH-FIDELITY SCREENS → IMPLEMENT → BUILD → INSTALL → TEST → FIX → CHECKPOINT**
 
 Do not design every future screen before its requirements are known.
 
-## 21. Android application identity
+## 22. Android application identity
 
 - **Product:** RichInsights
 - **Android application/package identity:** `com.ricven.richinsights`
 - **Repository:** `ricvenlimited/richinsights-android`
 
-## 22. Current V2 status
+## 23. Current V2 status
 
 - RichInsights is the V2 product identity.
 - Native Android is the target implementation.
@@ -378,3 +565,7 @@ Do not design every future screen before its requirements are known.
 - Quiz UI is provider-independent.
 - AdMob and billing are fresh V2 work, not copied V1 implementations.
 - High-fidelity implementation follows the native foundation and domain/content contracts.
+- **Brand & Launch Identity planning is now established before Firebase integration.**
+- The launcher icon, brand mark, tagline usage, and launch/splash experience are intentionally separated from the navigation architecture and backend architecture.
+- The current navigation shell remains valid and does not need to be redesigned because of this identity work.
+- The production icon and launch animation remain deliberately unimplemented until the visual concept is explored, selected, refined, and verified on Android devices.
