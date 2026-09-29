@@ -166,6 +166,13 @@ No commercial promise should be made for Bible resources until the underlying li
 
 Do not introduce paid infrastructure merely because Premium or advertising exists.
 
+The current backend direction is **Firebase-first**:
+- Firestore is the initial database;
+- Python Cloud Functions provide backend/server logic;
+- Firebase Authentication, Storage, Messaging, Analytics, Crashlytics, Remote Config, and App Check are used where their concrete V2 responsibilities justify them;
+- SQL Connect/PostgreSQL is deliberately deferred;
+- Cloudflare is not required initially.
+
 Future services should be added only for a concrete need such as:
 - authentication;
 - account sync;
@@ -176,7 +183,9 @@ Future services should be added only for a concrete need such as:
 - content delivery;
 - scale/reliability.
 
-Backend/provider choices are still subject to V2 architecture evaluation.
+Cost-control principles include minimizing unnecessary Firestore reads/writes, avoiding per-user AI generation during every quiz, pre-generating/validating content where practical, monitoring Blaze usage, and avoiding paid providers unless justified.
+
+See `richinsights-backend-architecture.md` for the authoritative backend and cost architecture.
 
 ## 13. Development sequence
 
