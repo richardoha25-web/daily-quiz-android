@@ -3,6 +3,7 @@ agp = "9.4.0"
 kotlin = "2.4.10"
 composeBom = "2026.09.00"
 activityCompose = "1.13.0"
+navigation3 = "1.2.0"
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
@@ -12,5 +13,8 @@ composeCompiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "k
 androidxActivityCompose = { module = "androidx.activity:activity-compose", version.ref = "activityCompose" }
 androidxComposeBom = { module = "androidx.compose:compose-bom", version.ref = "composeBom" }
 androidxComposeMaterial3 = { module = "androidx.compose.material3:material3" }
+androidxComposeMaterialIconsExtended = { module = "androidx.compose.material:material-icons-extended" }
 androidxComposeUiToolingPreview = { module = "androidx.compose.ui:ui-tooling-preview" }
 androidxComposeUiTooling = { module = "androidx.compose.ui:ui-tooling" }
+androidxNavigation3Runtime = { module = "androidx.navigation3:navigation3-runtime", version.ref = "navigation3" }
+androidxNavigation3Ui = { module = "androidx.navigation3:navigation3-ui", version.ref = "navigation3" }
