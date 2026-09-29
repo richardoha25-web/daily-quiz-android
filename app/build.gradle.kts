@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.composeCompiler)
+    alias(libs.plugins.serialization)
 }
 
 android {
@@ -30,6 +31,7 @@ dependencies {
     implementation(libs.androidxComposeUiToolingPreview)
     implementation(libs.androidxNavigation3Runtime)
     implementation(libs.androidxNavigation3Ui)
+    implementation(libs.kotlinxSerializationJson)
 
     debugImplementation(libs.androidxComposeUiTooling)
 }
