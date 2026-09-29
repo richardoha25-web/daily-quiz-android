@@ -73,6 +73,27 @@ Remote + Local Data Sources
 
 Provider-specific generation logic belongs outside the Android presentation layer.
 
+## 5. Backend and infrastructure architecture
+
+The current V2 backend direction is **Firebase-first**:
+- Firebase Cloud Functions using Python for server-side/backend logic;
+- Cloud Firestore as the initial database;
+- Firebase Authentication;
+- Firebase Cloud Storage;
+- Firebase Cloud Messaging;
+- Firebase Analytics;
+- Firebase Crashlytics;
+- Firebase Remote Config;
+- Firebase App Check;
+- protected backend secrets/Secret Manager;
+- Google Play Billing for Android commercial flows when implemented.
+
+SQL Connect/PostgreSQL is deliberately deferred. Cloudflare is not required for V2 initially and the V1 Cloudflare Worker remains a prototype/reference rather than the V2 foundation.
+
+RichInsights is **online-first**, not broadly offline-first. Selected Home/Profile data may be cached, explicitly downloaded Learn content may work offline, and properly licensed Bible reading is intended to work offline. Quiz, News, Current Affairs, fresh Learn browsing/downloads, synchronization, and server-backed Bible features require internet.
+
+The detailed backend, security, content-pipeline, connectivity, cost-control, Firebase, Cloudflare, and infrastructure decisions are maintained in **`richinsights-backend-architecture.md`**. That document is authoritative for detailed backend architecture.
+
 ## 5. Content and question architecture
 
 The question system is being rebuilt from the ground up.
@@ -140,9 +161,25 @@ WEB remains the leading translation direction from earlier planning, but licensi
 
 Read-aloud must never start automatically when a chapter opens.
 
-## 9. Network and local data behavior
+## 10. Network and local data behavior
 
-Online quiz/content features require internet access.
+RichInsights is **online-first / internet-required for most platform functionality**, not broadly offline-first.
+
+Selected local/offline support is intentional:
+- **Home:** only selected basic/cached portions may remain available offline; fresh/live content and recommendations require internet.
+- **Profile:** selected cached profile data such as profile image, streaks, progress, and history may remain available offline; synchronization requires internet.
+- **Learn:** only courses/content the user explicitly downloaded may be available offline; fresh browsing and downloads require internet.
+- **Bible:** properly licensed Bible reading is intended to work offline, including book/chapter/verse navigation and reading.
+
+The following require internet:
+- Quiz;
+- News;
+- Current Affairs;
+- fresh Learn browsing/downloads;
+- fresh Home content/recommendations;
+- Bible quizzes;
+- server-backed Bible study features;
+- synchronization/live content.
 
 The app must provide deliberate states for:
 - online;
@@ -152,9 +189,12 @@ The app must provide deliberate states for:
 - loading/requesting;
 - empty result;
 - temporary failure;
-- retry.
+- retry;
+- feature unavailable because internet is required.
 
-Local persistence may store question history, settings, and other intentionally local data. Cached history must not silently become an offline quiz source unless that behavior is explicitly designed.
+Local persistence may use Room/DataStore and other appropriate local storage. Cached history must not silently become an offline quiz source when the product requires online quiz availability.
+
+See `richinsights-backend-architecture.md` for the authoritative connectivity and local-data boundaries.
 
 ## 10. Monetization and commercial architecture
 
