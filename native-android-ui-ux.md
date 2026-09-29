@@ -232,6 +232,27 @@ Where useful, larger windows may show multiple related panes instead of simply e
 
 ## 14. Connectivity states
 
+RichInsights is **online-first**, not broadly offline-first. The UI must make the boundary obvious.
+
+### Limited local/offline support
+
+- **Home:** only selected basic/cached portions may remain available offline. Fresh/live content and recommendations require internet.
+- **Profile:** selected cached data such as profile image, streaks, progress, and history may remain visible offline. Synchronization requires internet.
+- **Learn:** only explicitly downloaded courses/content may be available offline. Fresh browsing and downloads require internet.
+- **Bible:** properly licensed Bible reading should remain available offline, including book/chapter/verse navigation and reading.
+
+### Internet-required
+
+The following require internet:
+- Quiz;
+- News;
+- Current Affairs;
+- fresh Learn browsing/downloads;
+- fresh Home content/recommendations;
+- Bible quizzes;
+- server-backed Bible study features;
+- synchronization/live content.
+
 Design explicit UI for:
 - loading;
 - connecting;
@@ -240,6 +261,7 @@ Design explicit UI for:
 - empty;
 - temporary failure;
 - retry;
+- feature unavailable because internet is required;
 - quiz unavailable;
 - ad unavailable;
 - unexpected error.
@@ -252,6 +274,8 @@ Example:
 > Connect to the internet to start a quiz.
 
 Offline Bible reading must not be blocked merely because online quiz features require internet.
+
+See `richinsights-backend-architecture.md` for the authoritative connectivity model and backend boundaries.
 
 ## 15. Advertising UX
 
