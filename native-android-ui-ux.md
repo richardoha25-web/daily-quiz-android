@@ -2,7 +2,7 @@
 
 ## 1. Purpose
 
-This document defines the V2 product experience for **RichInsights**, the native Android educational platform.
+This document defines the visual and user-experience direction for **RichInsights**, the native Android educational platform.
 
 V2 is a new native experience. V1 is reference material only and must not constrain the new design.
 
@@ -13,28 +13,61 @@ V2 is a new native experience. V1 is reference material only and must not constr
 
 Core feeling: **Clean Competitive**
 
-Target qualities:
+RichInsights should feel:
+- intelligent;
 - modern;
 - polished;
 - energetic;
-- professional;
+- trustworthy;
 - accessible;
-- easy to understand;
 - educational without feeling childish.
+
+The design should support RichInsights as a broader educational platform rather than making the product feel like a quiz app with extra sections.
 
 Avoid:
 - excessive gradients;
 - visual clutter;
 - generic unmodified Material styling;
-- overly corporate or childish game styling;
+- overly corporate styling;
+- childish game styling;
 - unnecessary decoration;
-- inconsistent screen-by-screen visual languages.
+- separate visual identities for individual sections.
 
-## 3. Native design foundation
+## 3. Visual identity
 
-Use Kotlin + Jetpack Compose with a reusable RichInsights design system.
+RichInsights uses a **deep navy → intelligent blue → electric cyan → restrained gold** visual hierarchy.
 
-Define:
+### Brand palette
+
+- **Deep Navy — `#102A43`**
+  - primary foundation for strong hierarchy, navigation, headings, and trusted brand surfaces.
+- **Intelligent Blue — `#1769E0`**
+  - principal action and learning color.
+- **Electric Cyan — `#19B5FE`**
+  - controlled signature accent for discovery, emphasis, interactive highlights, and selected modern details.
+- **Warm Gold — `#F4B942`**
+  - restrained achievement accent for points, streaks, milestones, certificates, and similar positive accomplishments.
+
+### Supporting UI palette
+
+- **Background — `#F7F9FC`**
+- **Surface — `#FFFFFF`**
+- **Primary text — `#172033`**
+- **Secondary text — `#667085`**
+- **Success — `#22A06B`**
+- **Error — `#D64545`**
+
+Semantic green and red are reserved primarily for success, confirmation, incorrect, warning/error, and validation states. Gold is not a general-purpose status color.
+
+The palette should remain controlled. RichInsights should not become a rainbow-style educational app, and individual product sections should not introduce competing brand palettes.
+
+Final implementation tokens must be checked for contrast and accessibility before being treated as production-final.
+
+## 4. Native design foundation
+
+Use **Kotlin + Jetpack Compose** with a reusable RichInsights design system.
+
+The design system will establish:
 - typography;
 - color roles;
 - spacing;
@@ -44,45 +77,45 @@ Define:
 - cards;
 - inputs;
 - dialogs;
-- feedback;
+- feedback states;
 - loading/error/empty states;
 - navigation;
-- ad containers;
-- accessibility behavior.
+- accessibility behavior;
+- reusable product components.
 
-Material 3 may provide primitives, but RichInsights needs its own visual identity.
+Material 3 may provide underlying primitives, but RichInsights must have its own visual identity and token system.
 
-## 4. Primary navigation
+## 5. Primary navigation
 
-### Bottom navigation on compact phones
+### Compact phones
 
 **Home | Learn | Quiz | Bible | News**
 
 ### Profile & Settings
 
-Profile/settings is a secondary/global destination accessed from the top app bar/profile action.
+Profile and settings are secondary/global destinations, accessed through the appropriate profile or account action rather than taking a permanent primary-navigation slot.
 
 ### Larger screens
 
-Use adaptive navigation, such as a navigation rail/navigation suite, rather than stretching a phone bottom bar across a large window. Android's current guidance explicitly recommends adapting navigation for larger window sizes. citeturn0search1turn0search9
+Use adaptive navigation appropriate to the available window size. Do not stretch a phone bottom bar across large screens.
 
-Each primary destination should preserve its useful navigation state where appropriate.
+Each primary destination should preserve useful navigation state where appropriate.
 
-## 5. Home
+## 6. Home
 
 Home is the platform entry point.
 
-Possible hierarchy:
+Potential hierarchy:
 1. greeting/personal context;
 2. daily challenge;
 3. progress/streak;
-4. continue learning/playing;
-5. categories or featured content;
+4. continue learning;
+5. featured categories/content;
 6. relevant recommendations.
 
-The exact content should be established through wireframes and testing rather than locked here.
+The exact layout will be established through later wireframes and requirements rather than prematurely locking the screen here.
 
-## 6. Learn
+## 7. Learn
 
 Learn is the broader educational area.
 
@@ -91,48 +124,46 @@ It may contain:
 - lessons;
 - topics;
 - explanations;
-- future Study experiences;
+- study experiences;
 - learning progress.
 
-Do not force the entire future learning system into the first release. The navigation destination exists so the platform can grow beyond quizzes cleanly.
+The first release should not attempt to build the entire future learning system. The destination exists so RichInsights can grow beyond quizzes cleanly.
 
-## 7. Quiz
+## 8. Quiz
 
-Quiz is a major platform experience, not the entire app.
+Quiz is a major platform experience, not the entire product.
 
 Initial areas:
-- General Knowledge
-- Science
-- Africa & Nigeria
-- Current Affairs
-- Bible quizzes
+- General Knowledge;
+- Science;
+- Africa & Nigeria;
+- Current Affairs;
+- Bible quizzes.
 
-The UI consumes validated question objects from the V2 content architecture. It must not know which provider generated them.
+The UI consumes validated V2 question objects and remains independent of content providers.
 
-### Quiz screen
+### Quiz experience
 
-Target structure:
-- navigation/back control;
-- question number/progress;
-- timer;
+The quiz interface should clearly communicate:
+- progress;
 - question;
-- answer options;
-- relevant streak/progress;
-- clear feedback.
+- answer choices;
+- relevant timing;
+- score/streak context;
+- immediate feedback.
 
-The earlier V1 15-second timer is a reference requirement only. V2 should validate the final timing before locking it.
-
-Answer states:
+Answer states include:
 - default;
-- pressed;
-- selected;
+- pressed/selected;
 - correct;
 - incorrect;
 - disabled/locked.
 
 Feedback must be immediate, clear, and accessible.
 
-## 8. Results and progress
+The exact timer and other detailed interaction rules should be validated before being locked into the final design.
+
+## 9. Results and progress
 
 Results should communicate:
 - completion;
@@ -144,31 +175,24 @@ Results should communicate:
 - progress;
 - next action.
 
-Future enhancements may include:
-- explanations;
-- topic performance;
-- personalized recommendations;
-- achievements;
-- learning feedback.
+Future experiences may add explanations, topic performance, achievements, recommendations, and learning feedback.
 
-## 9. Bible
+## 10. Bible
 
 Bible is a dedicated product area.
 
 Conceptual structure:
 
-```
-Bible
-├── Read Bible
-│   ├── Book
-│   ├── Chapter
-│   └── Reader
-├── Bible Quiz
-└── Future Study
-```
+    Bible
+    ├── Read Bible
+    │   ├── Book
+    │   ├── Chapter
+    │   └── Reader
+    ├── Bible Quiz
+    └── Future Study
 
 Reader requirements:
-- offline reading when licensed content is available;
+- offline reading when properly licensed content is available;
 - book/chapter navigation;
 - search;
 - silent reading by default;
@@ -178,45 +202,28 @@ Reader requirements:
 
 Read-aloud must never start automatically.
 
-## 10. News
+## 11. News
 
 News is a dedicated top-level experience.
 
-It should be architecturally separate from the Current Affairs quiz category. A future news provider must not dictate the quiz UI or vice versa.
+It remains architecturally separate from the **Current Affairs** quiz category. News should have its own content and interaction model rather than forcing news content into the quiz system.
 
-News features will be designed after product requirements and content/provider decisions are established.
+Detailed News UX will be designed after its product requirements and content decisions are established.
 
-## 11. Typography and interaction
+## 12. Typography and interaction
 
-Typography should prioritize:
-- readable questions;
+Typography should provide:
 - strong headings;
-- clear scores;
+- highly readable learning and quiz text;
+- clear scores and progress;
 - comfortable body text;
 - consistent hierarchy.
 
-Ordinary learner-facing quiz/interface text should not be casually selectable/copyable. Use normal native Compose rendering rather than unnecessary text-selection containers.
-
-This is not an absolute copy-prevention mechanism. Accessibility must not be damaged in pursuit of copy resistance.
+Use normal native Compose rendering. Do not introduce unnecessary text-selection restrictions as a copy-prevention mechanism.
 
 Touch targets must be comfortable, and important meaning must never rely on color alone.
 
-## 12. Visual direction
-
-Initial direction:
-- near-white foundation;
-- strong blue primary identity;
-- deep blue/navy hierarchy;
-- dark readable text;
-- muted secondary text;
-- white surfaces/cards;
-- green success;
-- red incorrect/error;
-- restrained amber/gold accent for points/streaks/rewards.
-
-Final tokens must be validated for contrast and tested across screens.
-
-## 13. Responsive/adaptive design
+## 13. Responsive and adaptive design
 
 Design for:
 - phones;
@@ -224,26 +231,27 @@ Design for:
 - landscape;
 - tablets;
 - foldables;
-- split-screen/changing window sizes.
+- split-screen and changing window sizes.
 
 Do not build a phone-only layout and retrofit larger screens later.
 
-Where useful, larger windows may show multiple related panes instead of simply enlarging a single-column screen.
+Where useful, larger windows may display multiple related panes instead of simply enlarging a single-column phone layout.
 
 ## 14. Connectivity states
 
-RichInsights is **online-first**, not broadly offline-first. The UI must make the boundary obvious.
+RichInsights is **online-first**, not broadly offline-first.
+
+The UI must make connectivity requirements obvious.
 
 ### Limited local/offline support
 
-- **Home:** only selected basic/cached portions may remain available offline. Fresh/live content and recommendations require internet.
-- **Profile:** selected cached data such as profile image, streaks, progress, and history may remain visible offline. Synchronization requires internet.
-- **Learn:** only explicitly downloaded courses/content may be available offline. Fresh browsing and downloads require internet.
-- **Bible:** properly licensed Bible reading should remain available offline, including book/chapter/verse navigation and reading.
+- **Home:** selected basic/cached portions may remain available offline.
+- **Profile:** selected cached information such as progress and history may remain visible offline.
+- **Learn:** explicitly downloaded content may be available offline.
+- **Bible:** properly licensed Bible reading should remain available offline.
 
 ### Internet-required
 
-The following require internet:
 - Quiz;
 - News;
 - Current Affairs;
@@ -251,9 +259,9 @@ The following require internet:
 - fresh Home content/recommendations;
 - Bible quizzes;
 - server-backed Bible study features;
-- synchronization/live content.
+- synchronization and live content.
 
-Design explicit UI for:
+Design clear states for:
 - loading;
 - connecting;
 - offline;
@@ -262,20 +270,10 @@ Design explicit UI for:
 - temporary failure;
 - retry;
 - feature unavailable because internet is required;
-- quiz unavailable;
 - ad unavailable;
 - unexpected error.
 
 Messages should be short, human-readable, and actionable. Never expose raw provider/API errors.
-
-Example:
-
-> **Internet connection required**  
-> Connect to the internet to start a quiz.
-
-Offline Bible reading must not be blocked merely because online quiz features require internet.
-
-See `richinsights-backend-architecture.md` for the authoritative connectivity model and backend boundaries.
 
 ## 15. Advertising UX
 
@@ -283,48 +281,46 @@ V2 AdMob is a fresh implementation.
 
 Rules:
 - ads never cover quiz content or controls;
-- the quiz remains usable if an ad fails;
+- quiz functionality must remain usable when an ad fails;
 - interstitials belong at appropriate transitions;
-- rewarded ads are explicitly optional;
+- rewarded ads are optional;
 - development uses test ads;
 - production identifiers/configuration remain separate;
-- ad loading/failure states are handled gracefully.
+- ad loading and failure states are handled gracefully.
 
-Exact placements are implementation decisions and must be tested rather than copied blindly from V1.
+Exact placements are implementation decisions and must be tested rather than copied from V1.
 
-## 16. Premium/billing UX
+## 16. Premium and billing UX
 
 Future commercial surfaces may include:
-- Premium landing/store;
-- monthly/yearly subscriptions;
+- Premium;
 - Remove Ads;
-- premium content;
-- product benefits;
-- purchase/restore states;
+- premium content/features;
+- purchase and restore states;
 - active entitlement state.
 
 Requirements:
-- show value clearly;
+- communicate value clearly;
 - show price and billing period clearly;
 - distinguish subscriptions from one-time products;
 - explain entitlements;
-- avoid deceptive urgency/aggressive paywalls;
+- avoid deceptive urgency or aggressive paywalls;
 - preserve user context through purchase flows.
 
-Billing is planned, not an initial UI implementation requirement.
+Billing is planned for later stages and is not part of the initial UI foundation.
 
 ## 17. Accessibility
 
 Requirements:
 - sufficient contrast;
-- do not rely on color alone;
+- no reliance on color alone;
 - meaningful content descriptions where needed;
 - comfortable touch targets;
-- scalable text/layout;
-- logical focus/navigation semantics;
+- scalable text and layouts;
+- logical focus and navigation semantics;
 - accessibility testing across major screens.
 
-Copy-resistance must never become an excuse for inaccessible UI.
+Accessibility is a design-system requirement, not a final cleanup task.
 
 ## 18. Motion
 
@@ -338,23 +334,23 @@ Avoid excessive motion during timed quizzes. Animations must remain performant o
 
 ## 19. Reusable component foundation
 
-Initial shared components:
-- primary/secondary buttons;
+The design system will eventually provide reusable components such as:
+- primary and secondary buttons;
 - cards;
-- category/content cards;
+- content/category cards;
 - answer options;
 - progress indicators;
-- timer;
-- score display;
-- streak indicator;
+- timers;
+- score displays;
+- streak indicators;
 - dialogs;
-- feedback;
+- feedback states;
 - loading/error/empty states;
 - navigation components;
 - ad containers;
 - premium/entitlement indicators.
 
-Components should be designed as reusable system components, not one-off screen decorations.
+Components should be system-level building blocks, not one-off screen decorations.
 
 ## 20. Design process
 
@@ -370,11 +366,13 @@ Do not design every future screen before its requirements are known.
 
 ## 22. Current V2 status
 
-- RichInsights identity is the V2 direction.
+- RichInsights is the V2 product identity.
 - Native Android is the target implementation.
+- The product is being designed as a broader educational platform, not a quiz-only app.
 - Primary navigation is **Home / Learn / Quiz / Bible / News**.
 - Profile & Settings is secondary/global.
-- Adaptive navigation is required.
+- The visual direction is **deep navy → intelligent blue → electric cyan → restrained gold**, supported by neutral surfaces and semantic green/red.
+- Adaptive navigation and responsive layouts are required.
 - Bible is a major product section.
 - News is separate from Current Affairs.
 - Quiz UI is provider-independent.
