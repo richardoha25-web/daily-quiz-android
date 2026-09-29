@@ -26,7 +26,10 @@ dependencies {
 
     implementation(libs.androidxActivityCompose)
     implementation(libs.androidxComposeMaterial3)
+    implementation(libs.androidxComposeMaterialIconsExtended)
     implementation(libs.androidxComposeUiToolingPreview)
+    implementation(libs.androidxNavigation3Runtime)
+    implementation(libs.androidxNavigation3Ui)
 
     debugImplementation(libs.androidxComposeUiTooling)
 }
