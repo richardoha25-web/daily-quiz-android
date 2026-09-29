@@ -1,8 +1,10 @@
 package com.ricven.richinsights.ui.theme
 
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Shapes
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.unit.dp
 
 private val RichInsightsLightColorScheme = lightColorScheme(
     primary = RichInsightsBlue,
@@ -25,7 +27,15 @@ private val RichInsightsLightColorScheme = lightColorScheme(
     onError = RichInsightsSurface,
 )
 
-private val RichInsightsShapes = androidx.compose.material3.Shapes()
+private val RichInsightsShapes = Shapes()
+
+object RichInsightsSpacing {
+    val extraSmall = 4.dp
+    val small = 8.dp
+    val medium = 16.dp
+    val large = 24.dp
+    val extraLarge = 32.dp
+}
 
 @Composable
 fun RichInsightsTheme(
