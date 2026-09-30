@@ -549,12 +549,6 @@ Components should be system-level building blocks, not one-off screen decoration
 
 Do not design every future screen before its requirements are known.
 
-## 22. Android application identity
-
-- **Product:** RichInsights
-- **Android application/package identity:** `com.ricven.richinsights`
-- **Repository:** `ricvenlimited/richinsights-android`
-
 ## 23. Figma design workflow
 
 Figma is part of the RichInsights V2 design workflow and is used as the editable visual-design workspace alongside the native Android implementation.
@@ -591,21 +585,13 @@ Figma should remain the editable source for the visual exploration and brand ass
 
 The Figma concept work does not alter the existing navigation shell or backend architecture.
 
-## 24. Current V2 status
+## 23. Current V2 design status
 
-- RichInsights is the V2 product identity.
-- Native Android is the target implementation.
-- The product is being designed as a broader educational platform, not a quiz-only app.
-- Primary navigation is **Home / Learn / Quiz / Bible / News**.
-- Profile & Settings is secondary/global.
-- The visual direction is **deep navy → intelligent blue → electric cyan → restrained gold**, supported by neutral surfaces and semantic green/red.
-- Adaptive navigation and responsive layouts are required.
-- Bible is a major product section.
-- News is separate from Current Affairs.
-- Quiz UI is provider-independent.
-- AdMob and billing are fresh V2 work, not copied V1 implementations.
-- High-fidelity implementation follows the native foundation and domain/content contracts.
-- **Brand & Launch Identity planning is now established before Firebase integration.**
-- The launcher icon, brand mark, tagline usage, and launch/splash experience are intentionally separated from the navigation architecture and backend architecture.
-- The current navigation shell remains valid and does not need to be redesigned because of this identity work.
-- The production icon and launch animation remain deliberately unimplemented until the visual concept is explored, selected, refined, and verified on Android devices.
+- Brand/launch identity planning is established before Firebase integration.
+- **RichInsights — Brand & Icon Concepts** is the current Figma exploration workspace.
+- Six icon directions remain exploratory; no final brand mark/icon has been approved.
+- Production launcher assets and launch animation remain intentionally unimplemented.
+- The primary navigation shell remains **Home / Learn / Quiz / Bible / News** with Profile & Settings secondary/global.
+- The visual system, adaptive behavior, accessibility requirements, connectivity UX, and commercial UX defined in this document remain the active design direction.
+- Android implementation should follow the Figma → production-assets → Android → real-device verification workflow documented above.
+
