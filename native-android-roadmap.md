@@ -161,7 +161,7 @@ WEB remains the leading translation direction from earlier planning, but licensi
 
 Read-aloud must never start automatically when a chapter opens.
 
-## 10. Network and local data behavior
+## 9. Network and local data behavior
 
 RichInsights is **online-first / internet-required for most platform functionality**, not broadly offline-first.
 
@@ -231,17 +231,90 @@ Requirements:
 ## 12. Implementation stages
 
 ### Stage 0 — Requirements and architecture
-**Status: documented**
+**Status: documented / checkpointed**
 
-Lock product identity, V2 reset principle, navigation, architecture boundaries, content/question requirements, and major quality requirements.
+Product identity, V2 reset principle, navigation, architecture boundaries, content/question requirements, and major quality requirements are documented.
 
 ### Stage 1 — Native application foundation
-- Kotlin/Compose project setup
-- package/application identity: `com.ricven.richinsights`
-- Gradle/build configuration
-- theme/design-system foundation
-- navigation shell
-- build/install pipeline
+**Status: in progress**
+
+Stage 1 is being executed strictly in order. We do not jump ahead to backend/content features while a foundation step is still being established.
+
+#### Stage 1 execution order
+
+1. **Create the native Android project**
+   - Kotlin
+   - Jetpack Compose
+   - application/package identity: `com.ricven.richinsights`
+   - native Android project structure
+
+2. **Establish the Gradle/project foundation**
+   - Gradle configuration
+   - SDK configuration
+   - dependency management
+   - Compose/build configuration
+
+3. **Establish the initial RichInsights design system**
+   - theme foundation
+   - color tokens
+   - typography
+   - spacing/shapes conventions
+   - reusable UI foundation
+   - light-theme foundation with structure ready for dark theme later
+   - existing placeholder connected to `RichInsightsTheme`
+
+4. **Establish the navigation shell**
+   - initial primary navigation architecture
+   - Home / Learn / Quiz / Bible / News shell
+   - Profile & Settings remains secondary/global
+   - navigation structure only; no premature full product screens
+
+5. **Firebase foundation**
+   - create/connect the RichInsights Firebase project
+   - register `com.ricven.richinsights`
+   - add Firebase configuration
+   - connect Firebase to Android
+   - verify the connection with a minimal test
+   - do **not** yet populate Firestore collections, quiz questions, authentication flows, Cloud Functions, or production content logic
+
+   **Important sequencing note:** Firebase was intentionally paused while the product identity layer was being properly defined. The Firebase step remains next after the brand/launch work is sufficiently settled.
+
+6. **Build and install the first V2 APK**
+   - build the real project
+   - install on a physical Android device
+   - verify launch and foundation behavior
+
+7. **GitHub checkpoint**
+   - commit the working foundation
+   - push to `ricvenlimited/richinsights-android`
+
+8. **Stage 1 checkpoint**
+   - verify the foundation
+   - resolve remaining issues
+   - freeze the Stage 1 foundation
+   - proceed to Stage 2
+
+#### Brand & Launch Identity checkpoint inserted before Firebase implementation
+
+The product identity work was identified as important before moving into Firebase integration. It does **not** replace or restructure the navigation shell.
+
+The identity work covers:
+- RichInsights brand mark/symbol;
+- launcher/app icon direction;
+- adaptive icon requirements;
+- `Grow. Excel.` tagline usage;
+- Android launch/splash experience;
+- Figma-based visual exploration and editable design assets.
+
+Current state:
+- the UI/UX documentation has been updated with the brand/launch plan;
+- a dedicated Figma file, **RichInsights — Brand & Icon Concepts**, has been created;
+- the Figma board contains six deliberately different editable concept directions for exploration;
+- no icon concept has been approved as final;
+- no production launcher assets have been integrated into Android yet;
+- the launch animation/storyboard is still conceptual and will be finalized after the brand mark is selected.
+
+This identity checkpoint is a controlled addition to Stage 1. It does not invalidate Steps 1–4 or require the navigation shell to be rebuilt.
 
 ### Stage 2 — Platform UI foundation
 - RichInsights visual system
@@ -326,3 +399,7 @@ V2 succeeds when RichInsights has a maintainable native Android foundation with:
 - room for future educational products.
 
 **V2 is an educational platform foundation — not V1 rebuilt with a new UI.**
+
+### Current Stage 1 checkpoint
+
+Stage 1 has completed the native project, initial design-system, and navigation-shell foundation work. The current active work is the documented Brand & Launch Identity checkpoint in Figma. Firebase remains deliberately unimplemented until that identity work is sufficiently settled. No backend, quiz logic, monetization, or production content has been pulled forward.
