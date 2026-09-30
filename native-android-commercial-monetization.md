@@ -166,7 +166,20 @@ Future commercial features may include:
 
 No commercial promise should be made for Bible resources until the underlying licensing and distribution rights are confirmed.
 
-## 12. Cost discipline
+
+## 12. Security and reliability boundaries
+
+Commercial state is security-sensitive.
+
+The Android client must not be trusted to grant itself Premium, Remove Ads, content access, refunds, or other protected entitlements. Purchase state must be verified through the appropriate trusted backend/account flow before authoritative entitlement state is granted.
+
+Commercial APIs and backend operations must use authentication, authorization, validation, protected secrets, and abuse controls appropriate to the operation.
+
+Advertising and billing must also fail safely: an unavailable ad must not block core quiz functionality, and a failed or unverifiable purchase must not silently become an active entitlement.
+
+Detailed security, secret management, backend authorization, abuse protection, monitoring, and reliability requirements are authoritative in **`RichInsights-backend/frontend/database-architecture.md`**.
+
+## 13. Cost discipline
 
 Do not introduce paid infrastructure merely because Premium or advertising exists.
 
@@ -189,9 +202,9 @@ Future services should be added only for a concrete need such as:
 
 Cost-control principles include minimizing unnecessary Firestore reads/writes, avoiding per-user AI generation during every quiz, pre-generating/validating content where practical, monitoring Blaze usage, and avoiding paid providers unless justified.
 
-See `richinsights-backend-architecture.md` for the authoritative backend and cost architecture.
+See `RichInsights-backend/frontend/database-architecture.md` for the authoritative backend and cost architecture.
 
-## 13. Development sequence
+## 14. Development sequence
 
 ### Foundation
 - define product/access models;
@@ -211,7 +224,7 @@ See `richinsights-backend-architecture.md` for the authoritative backend and cos
 - additional educational products;
 - international expansion.
 
-## 14. Deliberately undecided
+## 15. Deliberately undecided
 
 Do not invent final values for:
 - subscription prices;
@@ -225,7 +238,7 @@ Do not invent final values for:
 
 These are future product/business decisions.
 
-## 15. Relationship to the other V2 documents
+## 16. Relationship to the other V2 documents
 
 ### `native-android-roadmap.md`
 Master project and implementation roadmap.
@@ -238,7 +251,7 @@ Commercial products, advertising, entitlements, billing boundaries, and monetiza
 
 The three documents should remain synchronized, but duplication should be avoided.
 
-## 16. V2 commercial status
+## 17. V2 commercial status
 
 - RichInsights is the V2 product identity.
 - V2 commercial architecture is planned, not implemented.
