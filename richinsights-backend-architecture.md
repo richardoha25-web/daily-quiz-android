@@ -1097,29 +1097,8 @@ These are implementation/product decisions to be made when the relevant requirem
 19. Security rules must be enforced server-side.
 20. Cost must be monitored as the platform grows.
 
-## 41. Relationship to the other V2 documents
+## 41. Current authoritative backend status
 
-### `native-android-roadmap.md`
-Master V2 project roadmap and implementation stages.
-
-### `native-android-ui-ux.md`
-User experience, navigation, visual system, interaction, accessibility, connectivity states, and commercial UX.
-
-### `native-android-commercial-monetization.md`
-Advertising, Premium, Remove Ads, billing, entitlements, and commercial boundaries.
-
-### `richinsights-backend-architecture.md`
-Detailed backend, infrastructure, data, security, content pipeline, connectivity, and cost architecture.
-
-The four documents form one V2 documentation set.
-
-## 42. Current authoritative status
-
-- Product identity: **RichInsights**
-- Company/studio: **Ricven Studios Limited**
-- Tagline: **Grow. Excel.**
-- Repository: `ricvenlimited/richinsights-android`
-- Android package identity: `com.ricven.richinsights`
 - Backend direction: **Firebase-first**
 - Database: **Firestore**
 - Backend functions: **Python Cloud Functions**
@@ -1133,12 +1112,7 @@ The four documents form one V2 documentation set.
 - SQL Connect/PostgreSQL: **deferred**
 - Cloudflare: **not required initially**
 - AI: **optional assistant within a validated content pipeline**
-- Connectivity model: **online-first / internet-required for most platform functionality**
-- Offline Learn: **only explicitly downloaded content**
-- Offline Bible: **licensed Bible reading**
-- Offline Profile: **selected locally cached data**
-- Online Quiz/News/Current Affairs: **required**
-- V1 Cloudflare Worker: **reference/prototype only**
-- V1 question bank/generation/API/AdMob: **not production assumptions**
+- Connectivity: **online-first / internet-required for most live platform functionality**
+- V1 Cloudflare Worker and V1 question/API/AdMob systems: **reference/prototype only, not V2 production dependencies**
 
-This document should be updated whenever a backend or infrastructure decision becomes final or changes.
+This snapshot summarizes the authoritative backend decisions above; detailed changes should be made in the relevant sections rather than by maintaining duplicate copies here.
