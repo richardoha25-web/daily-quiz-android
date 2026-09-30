@@ -1,6 +1,6 @@
 # RichInsights — Native Android V2 Roadmap
 
-> **Master V2 project roadmap.** This document is authoritative for product scope, implementation stages, sequencing, checkpoints, and Android architecture at the project level. Detailed backend/infrastructure decisions belong to `richinsights-backend-architecture.md`; detailed experience/design decisions belong to `native-android-ui-ux.md`; commercial decisions belong to `native-android-commercial-monetization.md`.
+> **Master V2 project roadmap.** This document is authoritative for product scope, implementation stages, sequencing, checkpoints, and Android architecture at the project level. Detailed backend/infrastructure decisions belong to `RichInsights-backend/frontend/database-architecture.md`; detailed experience/design decisions belong to `native-android-ui-ux.md`; commercial decisions belong to `native-android-commercial-monetization.md`.
 >
 > **Documentation rule:** preserve important decisions, avoid unnecessary duplication, and when a detailed decision changes, update its authoritative document first and then synchronize only the affected summaries here.
 
@@ -96,7 +96,7 @@ SQL Connect/PostgreSQL is deliberately deferred. Cloudflare is not required for 
 
 RichInsights is **online-first**, not broadly offline-first. Selected Home/Profile data may be cached, explicitly downloaded Learn content may work offline, and properly licensed Bible reading is intended to work offline. Quiz, News, Current Affairs, fresh Learn browsing/downloads, synchronization, and server-backed Bible features require internet.
 
-The detailed backend, security, content-pipeline, connectivity, cost-control, Firebase, Cloudflare, and infrastructure decisions are maintained in **`richinsights-backend-architecture.md`**. That document is authoritative for detailed backend architecture.
+The detailed backend, security, content-pipeline, connectivity, cost-control, Firebase, Cloudflare, and infrastructure decisions are maintained in **`RichInsights-backend/frontend/database-architecture.md`**. That document is authoritative for detailed backend architecture.
 
 ## 5. Content and question architecture
 
@@ -129,6 +129,17 @@ A wording change does not automatically make a genuinely new educational questio
 V2 must be capable of growing to a very large question universe, potentially millions of legitimate variants over the life of the platform. Scale must come from verified content and meaningful variants, not low-quality duplication.
 
 The system must continuously replenish content. A small exhausted cache must not be the normal failure mode.
+
+
+### Security & reliability requirement
+
+Security and reliability are **core V2 requirements** and begin with the architecture rather than being postponed until release.
+
+The Android client must never be trusted as the authority for protected state. Authentication, authorization, Firestore/Storage rules, server-side validation, protected secrets, App Check where appropriate, abuse controls, dependency hygiene, monitoring, and safe error handling must be designed into the platform.
+
+The platform must also account for provider/API outages, network instability, rate limits, malformed responses, service degradation, and recovery. Failures should be isolated, detected, handled safely, and communicated clearly without exposing internal details.
+
+The authoritative security and reliability architecture is maintained in **`RichInsights-backend/frontend/database-architecture.md`**. Security and reliability testing are release requirements, not optional polish.
 
 ## 6. Provider independence
 
@@ -198,7 +209,7 @@ The app must provide deliberate states for:
 
 Local persistence may use Room/DataStore and other appropriate local storage. Cached history must not silently become an offline quiz source when the product requires online quiz availability.
 
-See `richinsights-backend-architecture.md` for the authoritative connectivity and local-data boundaries.
+See `RichInsights-backend/frontend/database-architecture.md` for the authoritative connectivity and local-data boundaries.
 
 ## 10. Monetization and commercial architecture
 
