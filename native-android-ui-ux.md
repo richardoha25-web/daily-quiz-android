@@ -551,7 +551,43 @@ Do not design every future screen before its requirements are known.
 - **Android application/package identity:** `com.ricven.richinsights`
 - **Repository:** `ricvenlimited/richinsights-android`
 
-## 23. Current V2 status
+## 23. Figma design workflow
+
+Figma is part of the RichInsights V2 design workflow and is used as the editable visual-design workspace alongside the native Android implementation.
+
+### Current Figma work
+
+A dedicated Figma Design file has been created:
+
+**RichInsights — Brand & Icon Concepts**
+
+The current board contains:
+- Brand Direction;
+- Approved Color Direction;
+- six editable icon concept directions;
+- Selection & Production Path.
+
+The six exploratory directions are:
+1. Insight / Discovery
+2. Growth / Progress
+3. Learning / Knowledge
+4. RI Monogram
+5. Layered Information
+6. Refined Abstract
+
+These are **exploration concepts only**. None is currently approved as the final RichInsights brand mark.
+
+### Figma → Android workflow
+
+The intended sequence is:
+
+**Explore in Figma → select/refine concept → finalize vector/brand assets → prepare adaptive-icon assets → integrate into Android → build/install → test on real devices → checkpoint**
+
+Figma should remain the editable source for the visual exploration and brand assets. Android implementation should happen only after the visual direction is sufficiently approved.
+
+The Figma concept work does not alter the existing navigation shell or backend architecture.
+
+## 24. Current V2 status
 
 - RichInsights is the V2 product identity.
 - Native Android is the target implementation.
