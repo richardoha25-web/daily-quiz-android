@@ -1,6 +1,10 @@
 # RichInsights — Native Android V2 Roadmap
 
-> **Master V2 document.** This repository is a clean native Android rebuild. V1 is a prototype/reference only; V1 code and behavior are not assumed to be production-ready.
+> **Master V2 project roadmap.** This document is authoritative for product scope, implementation stages, sequencing, checkpoints, and Android architecture at the project level. Detailed backend/infrastructure decisions belong to `richinsights-backend-architecture.md`; detailed experience/design decisions belong to `native-android-ui-ux.md`; commercial decisions belong to `native-android-commercial-monetization.md`.
+>
+> **Documentation rule:** preserve important decisions, avoid unnecessary duplication, and when a detailed decision changes, update its authoritative document first and then synchronize only the affected summaries here.
+
+> **V2 foundation:** This repository is a clean native Android rebuild. V1 is a prototype/reference only; V1 code and behavior are not assumed to be production-ready.
 
 ## 1. Product identity
 
