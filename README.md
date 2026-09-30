@@ -47,7 +47,7 @@ Detailed project information is maintained in the following documents:
 
 - **[Native Android Roadmap](native-android-roadmap.md)** — development stages, milestones, and implementation direction.
 - **[Native Android UI/UX](native-android-ui-ux.md)** — interface structure, design direction, navigation, and UI/UX decisions.
-- **[RichInsights Backend Architecture](richinsights-backend-architecture.md)** — backend, data, API, and service architecture.
+- **[Backend / Frontend / Database Architecture](RichInsights-backend/frontend/database-architecture.md)** — backend, frontend, database, security, reliability, API, and service architecture.
 - **[Native Android Commercial & Monetization](native-android-commercial-monetization.md)** — commercial and monetization planning.
 
 These documents provide the detailed project context; this README is intended as the concise entry point to the repository.
