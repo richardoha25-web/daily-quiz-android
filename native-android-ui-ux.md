@@ -549,17 +549,15 @@ Components should be system-level building blocks, not one-off screen decoration
 
 Do not design every future screen before its requirements are known.
 
-## 23. Figma design workflow
+## 23. Design-tool workflow
 
-Figma is part of the RichInsights V2 design workflow and is used as the editable visual-design workspace alongside the native Android implementation.
+The RichInsights V2 design workflow uses **Penpot as the active editable design workspace** for continuing brand, icon, design-system, and UI/UX work.
 
-### Current Figma work
+Figma remains the **reference/archive workspace** for the existing **RichInsights — Brand & Icon Concepts** file and may still be used later when appropriate. The move to Penpot is due to the connected Figma Starter/View MCP usage limitations that can interrupt continued design work. It does not change the RichInsights visual direction, product architecture, or implementation stages.
 
-A dedicated Figma Design file has been created:
+### Current brand work
 
-**RichInsights — Brand & Icon Concepts**
-
-The current board contains:
+The existing Figma board contains:
 - Brand Direction;
 - Approved Color Direction;
 - six editable icon concept directions;
@@ -573,25 +571,23 @@ The six exploratory directions are:
 5. Layered Information
 6. Refined Abstract
 
-These are **exploration concepts only**. None is currently approved as the final RichInsights brand mark.
+These remain **exploration concepts only**. The **RI Monogram** is the leading refinement candidate, but no final RichInsights brand mark/icon has been approved.
 
-### Figma → Android workflow
+### Active design → Android workflow
 
 The intended sequence is:
 
-**Explore in Figma → select/refine concept → finalize vector/brand assets → prepare adaptive-icon assets → integrate into Android → build/install → test on real devices → checkpoint**
+**Explore/refine in Penpot → select/refine concept → finalize vector/brand assets → prepare adaptive-icon assets → integrate into Android → build/install → test on real devices → checkpoint**
 
-Figma should remain the editable source for the visual exploration and brand assets. Android implementation should happen only after the visual direction is sufficiently approved.
-
-The Figma concept work does not alter the existing navigation shell or backend architecture.
+Figma remains available as a reference and possible later design tool. The design-tool change does not alter the existing navigation shell or backend architecture.
 
 ## 23. Current V2 design status
 
 - Brand/launch identity planning is established before Firebase integration.
-- **RichInsights — Brand & Icon Concepts** is the current Figma exploration workspace.
-- Six icon directions remain exploratory; no final brand mark/icon has been approved.
+- **Penpot** is the active design workspace; the existing Figma file remains a reference/archive.
+- Six icon directions remain exploratory; the **RI Monogram** is the leading refinement candidate, but no final brand mark/icon has been approved.
 - Production launcher assets and launch animation remain intentionally unimplemented.
 - The primary navigation shell remains **Home / Learn / Quiz / Bible / News** with Profile & Settings secondary/global.
 - The visual system, adaptive behavior, accessibility requirements, connectivity UX, and commercial UX defined in this document remain the active design direction.
-- Android implementation should follow the Figma → production-assets → Android → real-device verification workflow documented above.
+- Android implementation should follow the Penpot → production-assets → Android → real-device verification workflow documented above.
 
