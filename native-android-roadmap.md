@@ -308,7 +308,12 @@ The identity work covers:
 - adaptive icon requirements;
 - `Grow. Excel.` tagline usage;
 - Android launch/splash experience;
-- Figma-based visual exploration and editable design assets.
+- Design-tool-based visual exploration and editable design assets.
+
+**Design-tool transition note:** Figma remains the reference/archive workspace for the existing **RichInsights — Brand & Icon Concepts** exploration. Because the connected Figma Starter/View setup imposes MCP usage limits that can interrupt the planned workflow, **Penpot is now the active design workspace for continuing the brand/launch work and subsequent UI/UX design work**. This is a workflow change, not a product or architecture change. The existing Figma work is preserved and may still be used later.
+
+The project will continue through the remaining Stage 1 steps once the brand/launch direction is sufficiently settled:
+**brand/launch work → Firebase foundation → first V2 APK → GitHub checkpoint → Stage 1 checkpoint → Stage 2**.
 
 Current state:
 - the UI/UX documentation has been updated with the brand/launch plan;
@@ -406,4 +411,4 @@ V2 succeeds when RichInsights has a maintainable native Android foundation with:
 
 ### Current Stage 1 checkpoint
 
-Stage 1 has completed the native project, initial design-system, and navigation-shell foundation work. The current active work is the documented Brand & Launch Identity checkpoint in Figma. Firebase remains deliberately unimplemented until that identity work is sufficiently settled. No backend, quiz logic, monetization, or production content has been pulled forward.
+Stage 1 has completed the native project, initial design-system, and navigation-shell foundation work. The current active work is the documented Brand & Launch Identity checkpoint, now continuing in Penpot while the existing Figma work is retained as reference. Firebase remains deliberately unimplemented until that identity work is sufficiently settled. No backend, quiz logic, monetization, or production content has been pulled forward.
