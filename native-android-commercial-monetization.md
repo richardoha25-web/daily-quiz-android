@@ -4,6 +4,10 @@
 
 This document defines the commercial architecture for **RichInsights** V2.
 
+**Document boundary:** this file is authoritative for monetization strategy, advertising, Premium/Remove Ads concepts, billing, products, entitlements, commercial UX boundaries, and commercial cost discipline. It does not define backend infrastructure or the general UI/UX system.
+
+**Documentation rule:** undecided commercial values remain explicitly undecided. Do not invent prices, product IDs, limits, or paywall rules simply to make the documentation appear complete.
+
 It is intentionally smaller than the implementation roadmap. It records commercial decisions and boundaries that affect product architecture without pretending that prices, products, or paywalls are already finalized.
 
 ## 2. Commercial direction
