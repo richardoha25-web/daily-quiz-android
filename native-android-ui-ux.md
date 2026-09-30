@@ -327,7 +327,7 @@ Quiz is a major platform experience, not the entire product.
 Initial areas:
 - General Knowledge;
 - Science;
-- Africa & Nigeria;
+- IT — Information & Technology;
 - Current Affairs;
 - Bible quizzes.
 
