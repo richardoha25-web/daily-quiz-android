@@ -154,7 +154,7 @@ The final provider mix is deliberately **not locked yet**.
 The initial product direction includes:
 - General Knowledge
 - Science
-- Africa & Nigeria
+- IT — Information & Technology
 - Current Affairs
 - Bible
 
@@ -377,7 +377,7 @@ This identity checkpoint is a controlled addition to Stage 1. It does not invali
 Bring categories online incrementally:
 - General Knowledge
 - Science
-- Africa & Nigeria
+- IT — Information & Technology
 - Current Affairs
 - Bible quiz capability where ready
 
