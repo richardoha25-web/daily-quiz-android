@@ -913,11 +913,25 @@ A news API is not automatically a question bank.
 
 The backend may ingest news, but learner-facing questions should be produced through the controlled content pipeline rather than blindly exposing provider responses.
 
-## 26. Africa & Nigeria content
+## 26. IT — Information & Technology content
 
-Africa & Nigeria is an initial V2 content area.
+IT — Information & Technology is an initial V2 content area intended for a global audience.
 
-V2 should not assume the V1 Africa API implementation or question bank is production-ready.
+The category should be broad enough to support foundational and practical technology knowledge without hard-wiring the quiz engine to a fixed list of subtopics.
+
+Potential subject areas may include:
+- computer fundamentals and hardware;
+- software and operating systems;
+- networking and internet technologies;
+- databases and data management;
+- programming and software development fundamentals;
+- cybersecurity and digital safety;
+- cloud computing;
+- web and mobile technologies;
+- information systems and IT support;
+- emerging technologies such as artificial intelligence and IoT.
+
+These are subject areas the content model should be capable of supporting; they do not require separate product categories or implementation now.
 
 The new architecture should:
 - ingest trusted factual source material;
@@ -1285,7 +1299,7 @@ The backend architecture maps to the roadmap as follows:
 ### Stage 7 — Initial content rollout
 - General Knowledge;
 - Science;
-- Africa & Nigeria;
+- IT — Information & Technology;
 - Current Affairs;
 - Bible quiz capability.
 
