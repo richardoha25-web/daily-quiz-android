@@ -4,6 +4,10 @@
 
 This document defines the visual and user-experience direction for **RichInsights**, the native Android educational platform.
 
+**Document boundary:** this file is authoritative for visual identity, UX principles, navigation experience, screen behavior, interaction patterns, accessibility, launch/splash experience, and user-facing connectivity states. It does not replace the roadmap, backend architecture, or commercial architecture documents.
+
+**Documentation rule:** important design decisions are retained here; implementation and infrastructure details should be referenced from their authoritative documents instead of being duplicated unnecessarily.
+
 V2 is a new native experience. V1 is reference material only and must not constrain the new design.
 
 ## 2. Product experience
