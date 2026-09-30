@@ -466,7 +466,25 @@ Design clear states for:
 
 Messages should be short, human-readable, and actionable. Never expose raw provider/API errors.
 
-## 16. Advertising UX
+
+## 16. Security and reliability UX
+
+Security and reliability are also user-experience concerns.
+
+The UI must:
+- clearly distinguish loading, temporary failure, offline, and service-unavailable states;
+- never expose raw API errors, stack traces, database details, tokens, or internal infrastructure information;
+- avoid claiming an action succeeded until the authoritative operation has succeeded;
+- provide safe retry behavior without creating uncontrolled repeated requests;
+- preserve safe local state when a service temporarily fails;
+- clearly communicate when internet is required;
+- keep protected account, entitlement, and other server-authoritative state governed by the backend rather than by client-only UI state.
+
+The UI should degrade gracefully when external providers or backend services are unavailable. Security-sensitive failures must fail closed rather than silently bypassing authorization or protection.
+
+Detailed security, authorization, abuse protection, and reliability architecture belongs to **`RichInsights-backend/frontend/database-architecture.md`**.
+
+## 17. Advertising UX
 
 V2 AdMob is a fresh implementation.
 
@@ -481,7 +499,7 @@ Rules:
 
 Exact placements are implementation decisions and must be tested rather than copied from V1.
 
-## 17. Premium and billing UX
+## 18. Premium and billing UX
 
 Future commercial surfaces may include:
 - Premium;
@@ -500,7 +518,7 @@ Requirements:
 
 Billing is planned for later stages and is not part of the initial UI foundation.
 
-## 18. Accessibility
+## 19. Accessibility
 
 Requirements:
 - sufficient contrast;
@@ -513,7 +531,7 @@ Requirements:
 
 Accessibility is a design-system requirement, not a final cleanup task.
 
-## 19. Motion
+## 20. Motion
 
 Motion should:
 - confirm interactions;
@@ -523,7 +541,7 @@ Motion should:
 
 Avoid excessive motion during timed quizzes. Animations must remain performant on lower-end devices.
 
-## 20. Reusable component foundation
+## 21. Reusable component foundation
 
 The design system will eventually provide reusable components such as:
 - primary and secondary buttons;
@@ -543,7 +561,7 @@ The design system will eventually provide reusable components such as:
 
 Components should be system-level building blocks, not one-off screen decorations.
 
-## 21. Design process
+## 22. Design process
 
 **RESEARCH → WIREFRAME → DESIGN SYSTEM → HIGH-FIDELITY SCREENS → IMPLEMENT → BUILD → INSTALL → TEST → FIX → CHECKPOINT**
 
