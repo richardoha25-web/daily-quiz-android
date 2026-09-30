@@ -12,7 +12,11 @@
 
 ## 1. Purpose and authority
 
-RichInsights V2 is being built as a new native Android educational platform. The backend must therefore be designed around V2 requirements rather than inherited from V1.
+RichInsights V2 is being built as a new native Android educational platform.
+
+**Documentation boundary:** this file is authoritative for backend platforms, data models, server-side logic, external providers, content pipelines, security, connectivity/local-data boundaries, infrastructure, and backend cost control.
+
+**Synchronization rule:** this document contains the detailed technical decision record. The roadmap should summarize these decisions at project level; the UI/UX and commercial documents should describe only the user-facing consequences relevant to their domains. A change to a backend decision must be reflected in those summaries when necessary, without copying the entire backend design into them. The backend must therefore be designed around V2 requirements rather than inherited from V1.
 
 This document is authoritative for:
 - backend platform selection;
